@@ -4,10 +4,14 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "run-s 'migrate up' build:vite",
+		"build:vite": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"create:permission": "node ./src/scripts/create_permission.js",
+		"create:crudPermissions": "node ./src/scripts/create_crudPermissions.js",
+		"migrate": "node-pg-migrate",
 		"test": "playwright test",
 		"test:unit": "vitest"
 	},
@@ -20,6 +24,12 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.3.0",
 		"vitest": "^0.25.3"
+	},
+	"dependencies": {
+		"dotenv": "^16.1.0",
+		"node-pg-migrate": "^6.2.2",
+		"npm-run-all": "^4.1.5",
+		"pg": "^8.11.0"
 	},
 	"type": "module"
 }

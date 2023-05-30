@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "svelte.svelte-vscode",
+        "frigus02.vscode-sql-tagged-template-literals",
+        "bierner.jsdoc-markdown-highlighting",
+    ]
+}
