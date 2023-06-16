@@ -12,7 +12,6 @@
       </a>
     </div>
     <nav>
-
         {#if data.user}
             <button
                 id="profile-menu-button"
@@ -39,8 +38,9 @@
   </header>
 
 
-
-<slot />
+<main>
+  <slot />
+</main>
 
 <style>
     :global(body) {
@@ -102,5 +102,9 @@
       color: #fff;
       border: none;
       cursor: pointer;
+    }
+
+    main {
+      padding: 50px;
     }
 </style>

@@ -15,7 +15,7 @@ export const database = {
 }
 
 export const cookies_options = {
-  maxAge: 43200000, // 12 Hours
+  maxAge: 2592000, // 30 days
   httpOnly: true,
   sameSite: true, // Strict
   secure: NODE_ENV === 'production',
