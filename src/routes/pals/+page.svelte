@@ -3,14 +3,14 @@
 </script>
 
 <main>
-    {#each data.users as user}
+    {#each data.pals as pal}
         <article class="user">
             <p class="score">score 7.8/10</p>
             <p class="age">age 35 | female</p>
             <!-- svelte-ignore a11y-img-redundant-alt -->
-            <img src="{user.imgURL ?? "/no_profile.png"}" alt="Profile Picture">
+            <img src="{pal.imgURL ?? "/no_profile.png"}" alt="Profile Picture">
             <div class="bio">
-                <p>{user.bio}</p>
+                <p>{pal.bio}</p>
             </div>
             <div class="actions">
                 <form class="meet" action="?/meet">

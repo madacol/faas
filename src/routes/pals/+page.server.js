@@ -1,10 +1,11 @@
 import { sql } from "$lib/db";
 
-export async function load({  }) {
+export async function load() {
 
-    const {rows: users} = await sql`
+    const {rows: pals} = await sql`
         SELECT
-            username
+            user_id
+            , username
             , name
             , lastname
             , email
@@ -16,6 +17,6 @@ export async function load({  }) {
 
 
     return {
-        users
+        pals
     }
 }
