@@ -23,7 +23,8 @@ const publicRoutes = [
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
     const session_id = event.cookies.get('session');
-    if (!session_id && !publicRoutes.includes(event.url.pathname)) {
+    const isPathProtected = !publicRoutes.includes(event.url.pathname);
+    if (!session_id && isPathProtected) {
         return redirect(`/login?redirectTo=${event.url.pathname}`, 'Not authenticated user.');
     }
 
@@ -58,19 +59,31 @@ export async function handle({ event, resolve }) {
             ;
     `;
 
+    // Invalid session
+    if (user?.expired) {
+        await sql`
+            DELETE FROM sessions
+            WHERE session_id=${session_id}
+            ;
+        `;
+        event.cookies.delete('session');
+
+        if (isPathProtected) {
+            return redirect(`/login?redirectTo=${event.url.pathname}`, 'Invalid session.');
+        }
+    }
+
     // Session expired
-    if ((!user || user.expired) && !publicRoutes.includes(event.url.pathname)) {
-        return redirect(`/login?redirectTo=${event.url.pathname}`, 'Session expired or invalid session.');
+    if (!user && isPathProtected) {
+        return redirect(`/login?redirectTo=${event.url.pathname}`, 'Session expired');
     }
 
     // User is logged in
     if (user && !user.expired) {
         event.locals.user = user;
-    }
-
-    // if logged in, but trying to access /login or /signup, redirect to /
-    if (user && ['/login', '/signup' ].includes(event.url.pathname)) {
-        return redirect('/', 'Already logged in.');
+        if (event.url.pathname === '/login' || event.url.pathname === '/signup') {
+            return redirect('/', 'Already logged in.');
+        }
     }
 
     return await resolve(event);
