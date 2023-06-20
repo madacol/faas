@@ -13,7 +13,8 @@
                 <p>{pal.bio}</p>
             </div>
             <div class="actions">
-                <form class="meet" action="?/meet">
+                <form class="meet" method="post" action="?/meet">
+                    <input type="hidden" name="pal_id" value="{pal.user_id}">
                     <button type="submit">Meet!</button>
                 </form>
             </div>
