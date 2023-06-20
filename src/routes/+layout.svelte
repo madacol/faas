@@ -1,6 +1,7 @@
 <script>
 	export let data;
-    let menu_open = false;
+
+  let menu_open = false;
 </script>
 
 
@@ -8,9 +9,7 @@
 <header>
   <div class="logo_links">
     <div class="logo">
-      <a href="/">
-        <img src="/logo.png" alt="logo" height="80px" width="80px"/>
-      </a>
+      <a href="/" aria-label="logo" />
     </div>
     <div class="links">
       <a href="/pending_users">Pending Users</a>
@@ -45,68 +44,78 @@
 </header>
 
 
-<main>
+<div id="content">
   <slot />
-</main>
+</div>
 
 <style>
     :global(body) {
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      min-height: 400px;
+      align-items: stretch;
     }
 
     header {
-      background: #f9f9f9;
-      margin: 0 1em 0 0;
+      background: #95b1ca;
+      padding: 0 1em 0 0;
       display: flex;
       gap: 2em;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
     }
 
     .logo_links {
       display: flex;
-      gap: 2em;
-      align-items: center;
+      align-items: stretch;
+      overflow: auto;
     }
 
     .links {
       display: flex;
       gap: 1em;
+      overflow: auto;
+      align-items: center;
+      padding-left: 1em;
     }
 
     nav {
       position: relative;
     }
 
-    .logo {
-      font-size: 20px;
-      font-weight: bold;
+    .logo > a {
+      background-image: url(/logo.png);
+      background-size: contain;
+      height: 4em;
+      width: 4em;
+      display: block;
     }
 
     #profile-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background: #fff;
-        border: 1px solid #ccc;
-        padding: 10px;
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 10px;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
     }
 
     #profile-menu-button {
-        background: #333;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        padding: 10px 20px;
+      background: #333;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 10px 20px;
+      border-radius: 0.7em;
     }
 
     #profile-menu.open {
@@ -123,10 +132,12 @@
       color: #fff;
       border: none;
       cursor: pointer;
+      border-radius: 0.7em;
     }
 
-    main {
-      padding: 50px;
+    #content {
       overflow: auto;
+      flex-grow: 1;
+      text-align: center;
     }
 </style>
