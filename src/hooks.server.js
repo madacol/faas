@@ -44,7 +44,7 @@ export async function handle({ event, resolve }) {
             SELECT
                 role_id,
                 roles.name,
-                ARRAY_AGG(permission_id) permissions
+                ARRAY_AGG(permissions.name) permissions
             FROM roles
             JOIN join_roles_permissions USING (role_id)
             JOIN permissions USING (permission_id)
