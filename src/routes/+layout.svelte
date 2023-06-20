@@ -13,7 +13,7 @@
     </div>
     <div class="links">
       <a href="/pending_users">Pending Users</a>
-      <a href="/link 2">link 2</a>
+      <a href="/pals">Show Pals</a>
       <a href="/link 3">link 3</a>
     </div>
   </div>
