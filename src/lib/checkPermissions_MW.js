@@ -28,16 +28,17 @@ export function checkPermissions_MW (permissionsRequired, handler) {
         ? [permissionsRequired]
         : permissionsRequired
 
-    return async (request) => {
-        if (request.locals.user !== null) {
-            const userPermissions = request.locals.user.permissions;
+    return async (event) => {
+        if (event.locals.user !== null) {
+            const userPermissions = event.locals.user.permissions;
 
             const isAuthorized = checkPermissions(permissionsRequired_arr, userPermissions);
-            if (isAuthorized) return handler(request);
+            if (isAuthorized) return await handler(event);
+
+            console.warn(`Unauthorized to perform this action.\nNeed following permissions: ${permissionsRequired.toString()}`);
+            throw error(403, "Unauthorized to perform this action")
         }
 
-        console.warn(`Unauthorized to perform this action.\nNeed following permissions: ${permissionsRequired.toString()}`);
-
-        throw error(403, "Unauthorized to perform this action")
+        throw error(403, "Requires authentication")
     }
 }
