@@ -14,7 +14,7 @@
     <div class="links">
       <a href="/pending_users">Pending Users</a>
       <a href="/pals">Show Pals</a>
-      <a href="/link 3">link 3</a>
+      <a href="/personality_test">form</a>
     </div>
   </div>
   <nav>
@@ -53,7 +53,6 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-
       display: flex;
       flex-direction: column;
       height: 100vh;
