@@ -5,7 +5,7 @@ import { sql } from "$lib/db";
 /** @type {import('./$types').PageServerLoad} */
 export const load = checkPermissions_MW(
     'read_users',
-    async function load() {
+    async () => {
         const {rows: users} = await sql`
             SELECT
                 username
