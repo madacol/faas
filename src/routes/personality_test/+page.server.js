@@ -1,11 +1,15 @@
 import { sql } from "$lib/db";
 
-export async function load() {
+export async function load({locals}) {
+    const user_id = locals.user.user_id;
     const {rows: questions} = await sql`
         SELECT
             personality_question_id
             , question
+            , answer
         FROM personality_questions
+        LEFT JOIN personality_answers USING (personality_question_id)
+        WHERE user_id = ${user_id}
         LIMIT 1000
         ;
     `

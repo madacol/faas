@@ -9,23 +9,48 @@
                 <h4>{question.question}</h4>
                 <div class="answers">
                     <label class="strongly_disagree">
-                        <input type="radio" name="{question.personality_question_id}" value=1>
+                        <input
+                            type="radio"
+                            name="{question.personality_question_id}"
+                            value=1
+                            checked={question.answer === 1}
+                        >
                         <span>Strongly Disagree</span>
                     </label>
                     <label class="disagree">
-                        <input type="radio" name="{question.personality_question_id}" value=2>
+                        <input
+                            type="radio"
+                            name="{question.personality_question_id}"
+                            value=2
+                            checked={question.answer === 2}
+                        >
                         <span>Disagree</span>
                     </label>
                     <label class="neutral">
-                        <input type="radio" name="{question.personality_question_id}" value=3 checked>
+                        <input
+                            type="radio"
+                            name="{question.personality_question_id}"
+                            value=3
+                            checked={question.answer === 3}
+                        >
                         <span>Neutral</span>
                     </label>
                     <label class="agree">
-                        <input type="radio" name="{question.personality_question_id}" value=4>
+                        <input
+                            type="radio"
+                            name="{question.personality_question_id}"
+                            value=4
+                            checked={question.answer === 4}
+                        >
                         <span>Agree</span>
                     </label>
                     <label class="strongly_agree">
-                        <input type="radio" name="{question.personality_question_id}" value=5>
+                        <input
+                            type="radio"
+                            name="{question.personality_question_id}"
+                            value=5
+                            checked={question.answer === 5}
+                        >
                         <span>Strongly Agree</span>
                     </label>
                 </div>
