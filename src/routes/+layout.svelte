@@ -1,4 +1,5 @@
 <script>
+  import { page } from '$app/stores';
   export let data;
 
   let menu_open = false;
@@ -31,10 +32,9 @@
         >
             <div class="profile-menu-item">Profile</div>
             <div class="profile-menu-item">Settings</div>
+            <hr>
             <div class="profile-menu-item">
-                <form method="post" action="/logout" >
-                    <button type="submit">Logout</button>
-                </form>
+              <a class="logout" href="/logout?redirectTo={$page.url.pathname}">Logout</a>
             </div>
         </div>
     {:else}
@@ -105,7 +105,7 @@
       padding: 10px;
       flex-direction: column;
       gap: 10px;
-      align-items: center;
+      align-items: start;
     }
 
     #profile-menu-button {
@@ -138,5 +138,14 @@
       overflow: auto;
       flex-grow: 1;
       text-align: center;
+    }
+
+    .logout {
+      color: #9d0000;
+      text-decoration: none;
+    }
+    hr {
+      align-self: stretch;
+      margin: 0;
     }
 </style>
