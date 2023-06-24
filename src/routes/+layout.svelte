@@ -5,8 +5,6 @@
   let menu_open = false;
 </script>
 
-
-
 <header>
   <div class="logo_links">
     <div class="logo">
@@ -22,7 +20,10 @@
     {#if data.user}
         <button
             id="profile-menu-button"
-            on:click={e => menu_open = !menu_open}
+            on:click={e => {
+                e.stopPropagation()
+                menu_open = !menu_open
+            }}
             on:keypress|self={e => e.key === 'Enter' && (menu_open = !menu_open)}
         >{data.user.name}</button>
 
@@ -30,8 +31,12 @@
             id="profile-menu"
             class:open={menu_open}
         >
-            <div class="profile-menu-item">Profile</div>
-            <div class="profile-menu-item">Settings</div>
+            <div class="profile-menu-item">
+              <a href="/profile">Profile</a>
+            </div>
+            <div class="profile-menu-item">
+              <a href="/settings">Settings</a>
+            </div>
             <hr>
             <div class="profile-menu-item">
               <a class="logout" href="/logout?redirectTo={$page.url.pathname}">Logout</a>
@@ -44,8 +49,11 @@
 </header>
 
 
-<div id="content">
-  <slot />
+<div id="content"
+    on:click={()=>menu_open = false}
+    on:keypress|self={e => e.key === 'Enter' && (menu_open = false)}
+>
+    <slot />
 </div>
 
 <style>
@@ -140,9 +148,16 @@
       text-align: center;
     }
 
-    .logout {
-      color: #9d0000;
+    a {
+      color: #333;
+    }
+
+    .profile-menu-item a {
       text-decoration: none;
+    }
+
+    a.logout {
+      color: #9d0000;
     }
     hr {
       align-self: stretch;
