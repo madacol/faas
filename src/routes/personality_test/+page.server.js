@@ -36,6 +36,8 @@ export const actions = {
             INSERT INTO personality_answers (user_id, personality_question_id, answer)
             SELECT ${user_id}, personality_question_id, answer
             FROM json_to_recordset(${JSON.stringify(form_data)}) AS x("personality_question_id" int, "answer" int)
+            ON CONFLICT (user_id, personality_question_id) DO UPDATE
+            SET answer = EXCLUDED.answer
             ;
         `;
     },
