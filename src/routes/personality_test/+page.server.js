@@ -34,6 +34,5 @@ export const actions = {
             FROM json_to_recordset(${JSON.stringify(form_data)}) AS x("personality_question_id" int, "answer" int)
             ;
         `;
-
     },
 }

@@ -1,7 +1,7 @@
 <script>
     export let data;
 </script>
-  
+
 <main>
     <form method="post">
         {#each data.questions as question}
@@ -34,7 +34,7 @@
         <button type="submit">Submit</button>
     </form>
 </main>
-  
+
 <style>
     :global(body) {
         background-color: #f3ece6;
