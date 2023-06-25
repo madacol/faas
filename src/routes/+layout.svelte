@@ -68,6 +68,12 @@
       min-height: 400px;
       align-items: stretch;
     }
+    :global(button) {
+      font-size: 1em;
+      padding: 0.5em;
+      border-radius: 1em;
+      cursor: pointer;
+    }
 
     header {
       background: #95b1ca;
@@ -121,7 +127,6 @@
       background: #333;
       color: #fff;
       border: none;
-      cursor: pointer;
       padding: 10px 20px;
       border-radius: 0.7em;
     }
