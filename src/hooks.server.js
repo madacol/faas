@@ -85,6 +85,7 @@ export async function handle({ event, resolve }) {
             return redirect('/', 'Already logged in.');
         }
     }
+
     const method = event.request.method;
     const path = event.url.pathname;
     const user_session = event.locals.user;
@@ -92,13 +93,41 @@ export async function handle({ event, resolve }) {
     const headers = Object.fromEntries(event.request.headers);
 
     const {rows: [{log_id}]} = await sql`
-        INSERT INTO logs ( path, method, params, headers, user_session )
-            VALUES (${path}, ${method}, ${params}, ${headers}, ${user_session})
-            RETURNING log_id
+        INSERT INTO logs (
+            path,
+            method,
+            params,
+            headers,
+            user_session
+        ) VALUES (
+            ${path},
+            ${method},
+            ${params},
+            ${headers},
+            ${user_session}
+        ) RETURNING log_id
         ;
     `
 
+    const request_clone = event.request.clone();
+
+    /*********************/
+
     const response = await resolve(event);
+
+    /*********************/
+
+    if (response.status >= 500) {
+        const body = await request_clone.text();
+        await sql`
+            UPDATE logs
+            SET response_status = ${response.status}
+                , body = ${body}
+            WHERE log_id = ${log_id}
+            ;
+        `
+        return response;
+    }
 
     await sql`
         UPDATE logs
