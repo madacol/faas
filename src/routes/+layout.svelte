@@ -152,6 +152,7 @@
       overflow: auto;
       flex-grow: 1;
       text-align: center;
+      background-color: rgb(255, 246, 231);
     }
 
     a {

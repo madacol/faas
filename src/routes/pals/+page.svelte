@@ -30,7 +30,6 @@
         gap: 1.5em;
         padding: 2em;
         text-align: center;
-        background-color: #eeeeee;
         max-width: 700px;
         margin: auto;
     }
@@ -77,7 +76,6 @@
         grid-column: 3;
     }
     .bio {
-        line-height: 0.7em;
     }
     .bio p {
         width: 100%;
