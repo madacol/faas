@@ -45,7 +45,20 @@
     label {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         gap: 0.5rem;
+    }
+    input {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid #ccc;
+    }
+    button {
+        font-size: 1em;
+        padding: 0.5em;
+        background-color: #4CAF50;
+        color: white;
+        border-radius: 1em;
     }
 </style>
 
