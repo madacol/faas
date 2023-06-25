@@ -61,6 +61,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
+      font-size: calc(10px + 1vmin);
       display: flex;
       flex-direction: column;
       height: 100vh;
