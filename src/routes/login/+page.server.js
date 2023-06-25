@@ -1,6 +1,6 @@
 import argon2 from "argon2";
-import { sql } from "../../lib/db";
-import { cookies_options } from "$lib/config";
+import { sql } from "$lib/server/db";
+import { cookies_options } from "$lib/server/config";
 import { redirect } from "@sveltejs/kit";
 import { fail } from "@sveltejs/kit";
 

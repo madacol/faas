@@ -1,4 +1,4 @@
-import { sql } from "$lib/db";
+import { sql } from "$lib/server/db";
 
 export async function load({locals}) {
     const user_id = locals.user.user_id;

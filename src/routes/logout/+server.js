@@ -1,5 +1,5 @@
-import { cookies_options } from '$lib/config.js';
-import { sql } from '$lib/db.js';
+import { cookies_options } from '$lib/server/config.js';
+import { sql } from '$lib/server/db.js';
 import { redirect } from '@sveltejs/kit';
 
 export async function GET({ cookies, url }) {

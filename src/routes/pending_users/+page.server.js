@@ -1,5 +1,5 @@
-import { checkPermissions_MW } from "$lib/checkPermissions_MW";
-import { sql } from "$lib/db";
+import { checkPermissions_MW } from "$lib/server/checkPermissions_MW";
+import { sql } from "$lib/server/db";
 
 
 /** @type {import('./$types').PageServerLoad} */

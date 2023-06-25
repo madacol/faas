@@ -1,6 +1,6 @@
 import pg from 'pg';
 const { Pool, Client } = pg;
-import { database as config } from "$lib/config";
+import { database as config } from "$lib/server/config";
 
 export const pool = new Pool(config.pool);
 pool.on('connect', client => {

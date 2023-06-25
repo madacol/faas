@@ -1,4 +1,4 @@
-import { sql } from "$lib/db";
+import { sql } from "$lib/server/db";
 
 export async function load() {
 
