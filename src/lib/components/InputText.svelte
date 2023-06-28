@@ -5,11 +5,18 @@
     /** @type {string} */
     export let name
 
-    /** @type {} */
+    /** @type {string} */
     export let type = 'text'
+    
+    /** @type {boolean} */
+    export let required = false
+    
+    /** @type {string} */
+    export let value = ""
+
 </script>
 
-<input {name} {type} {placeholder} />
+<input {name} {type} {placeholder} {required} {value}/>
 
 <style>
     input {

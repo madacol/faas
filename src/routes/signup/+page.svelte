@@ -1,32 +1,34 @@
 <script>
-    import { enhance } from "$app/forms";
+    import { enhance } from '$app/forms'
+    import InputText from '$lib/components/InputText.svelte'
+    import PrimaryButton from '$lib/components/PrimaryButton.svelte'
 
-    export let form;
+    export let form
 
-    let password = "";
-    let password_repeat = "";
+    let password = ''
+    let password_repeat = ''
     /**
      * @type {string | null}
      */
-    let error = null;
+    let error = null
 
     function validate() {
         if (password !== password_repeat) {
-            error = "Passwords do not match";
-            return false;
+            error = 'Passwords do not match'
+            return false
         }
-        error = null;
-        return true;
+        error = null
+        return true
     }
 
     $: if (password !== password_repeat) {
-        error = "Passwords do not match";
+        error = 'Passwords do not match'
     } else {
-        error = null;
+        error = null
     }
 
     $: if (form?.error) {
-        error = form.error;
+        error = form.error
     }
 </script>
 
@@ -34,38 +36,61 @@
     {#if error}
         <p class="error">{error}</p>
     {/if}
+    <img src="/logo.png" alt="logo" style="padding-top: 40px;" />
+    <div style="display: flex; align-items: center;">
+        <h1 style="align-self: flex-end;">Welcome!</h1>
+        <img
+            src="/image_1_sign_up.png"
+            alt="image_decor"
+            style="padding-left: 5px;"
+        />
+    </div>
 
-    <h1>Login</h1>
+    <form method="post">
+        <InputText name="name" type="text" required placeholder="First Name" />
+        <InputText
+            name="lastname"
+            type="text"
+            required
+            placeholder="Last Name"
+        />
+        <InputText name="username" type="email" required placeholder="Email" />
+        <InputText
+            name="email_repeat"
+            type="email"
+            required
+            placeholder="Confirm email"
+        />
 
-    <form method="post" use:enhance>
-        <label>
-            Username:
-            <input name="username" type="text" required/>
-        </label>
+        <InputText
+            bind:value={password}
+            name="password"
+            type="password"
+            required
+            placeholder="Password"
+        />
+        <InputText
+            bind:value={password_repeat}
+            name="password_repeat"
+            type="password"
+            required
+            placeholder="Confirm password"
+        />
+        <select name="gender" id="gender" placeholder="Gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="non-binary">Non-binary</option>
+            <option value="other">Other</option>
+          </select>
 
-        <label>
-            Password:
-            <input bind:value={password} name="password" type="password" required/>
-        </label>
+        <div style="padding-top: 20px;">
+            <PrimaryButton
+                type="submit"
+                on:submit={(e) => validate() || e.preventDefault()}
+                >Sign up</PrimaryButton
+            >
+        </div>
 
-        <label>
-            Repeat password:
-            <input bind:value={password_repeat} name="password_repeat" type="password" required/>
-        </label>
-
-        <label>
-            Name:
-            <input name="name" type="text" required/>
-        </label>
-
-        <label>
-            Lastname:
-            <input name="lastname" type="text" required/>
-        </label>
-
-
-
-        <button type="submit" on:submit={e => validate() || e.preventDefault()} >Login</button>
     </form>
 </main>
 
@@ -75,7 +100,6 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        height: 100vh;
     }
     form {
         display: flex;
@@ -90,4 +114,3 @@
         gap: 0.5rem;
     }
 </style>
-
