@@ -1,30 +1,38 @@
 <script>
-    import { enhance } from "$app/forms";
+    import { enhance } from '$app/forms'
+    import InputText from '$lib/components/InputText.svelte'
+    import PrimaryButton from '$lib/components/PrimaryButton.svelte'
 
-	export let form;
+    export let form
 </script>
 
 <main>
-	{#if form?.error}
-		<p class="error">{form.error}</p>
-	{/if}
+    {#if form?.error}
+        <p class="error">{form.error}</p>
+    {/if}
 
-    <h1>Login</h1>
-
+    <img src="/logo.png" alt="logo" style="padding-top: 40px;"/>
+    <h2>Welcome back!</h2>
+    <img src="/login_image_decor.png" alt="image_decor" />
     <form method="post" use:enhance>
-        <label>
-            Username:
-            <input name="username" type="text" required/>
-        </label>
+        <InputText
+            name="email"
+            type="text"
+            required
+            placeholder="Enter your username"
+        />
 
-        <label>
-            Password:
-            <input name="password" type="password" required/>
-        </label>
-
-        <button type="submit">Login</button>
+        <InputText
+            name="password"
+            type="password"
+            required
+            placeholder="Enter your password"
+        />
+        <div style="padding-top: 20px;">
+            <PrimaryButton type="submit">Log in</PrimaryButton>
+        </div>
     </form>
-    <a href="/signup">Sign Up</a>
+    <h5 style="margin: 0; padding: 0">Don’t have an account? <a href="/signup">Sign Up</a></h5>
 </main>
 
 <style>
@@ -33,7 +41,7 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        height: 100vh;
+        margin: auto;
     }
     form {
         display: flex;
@@ -53,12 +61,4 @@
         border-radius: 0.5rem;
         border: 1px solid #ccc;
     }
-    button {
-        font-size: 1em;
-        padding: 0.5em;
-        background-color: #4CAF50;
-        color: white;
-        border-radius: 1em;
-    }
 </style>
-
