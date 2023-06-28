@@ -4,12 +4,13 @@ export async function load({locals}) {
     const user_id = locals.user.user_id;
     const {rows: questions} = await sql`
         SELECT
-            personality_question_id
+            questions.personality_question_id
             , question
             , answer
-        FROM personality_questions
-        LEFT JOIN personality_answers USING (personality_question_id)
-        WHERE user_id = ${user_id}
+        FROM personality_questions AS questions
+        LEFT JOIN personality_answers AS answers
+            ON user_id = ${user_id}
+            AND questions.personality_question_id = answers.personality_question_id
         LIMIT 1000
         ;
     `
