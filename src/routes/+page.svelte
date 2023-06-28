@@ -30,10 +30,16 @@
             <h5>
                 Step 3 Pay per meet. You only pay if you agree to meet someone
             </h5>
-            <img style="padding-left:5px ;" src="/image_3_intro.png" alt="image_3_intro.png" />
+            <img
+                style="padding-left:5px ;"
+                src="/image_3_intro.png"
+                alt="image_3_intro.png"
+            />
         </div>
         <div style="padding-top: 15px;">
-            <PrimaryButton type="submit">Get Started</PrimaryButton>
+            <a href="/signup"
+                ><PrimaryButton type="submit">Get Started</PrimaryButton></a
+            >
         </div>
     </div>
 </main>
