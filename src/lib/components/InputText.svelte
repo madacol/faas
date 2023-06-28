@@ -13,10 +13,11 @@
     
     /** @type {string} */
     export let value = ""
+    
 
 </script>
 
-<input {name} {type} {placeholder} {required} {value}/>
+<input {name} {type} {placeholder} {required} {value} on:focus/>
 
 <style>
     input {

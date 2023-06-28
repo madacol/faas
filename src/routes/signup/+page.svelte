@@ -76,12 +76,21 @@
             required
             placeholder="Confirm password"
         />
-        <select name="gender" id="gender" placeholder="Gender">
+        <InputText
+            bind:value={password}
+            name="birthday"
+            type="text"
+            required
+            on:focus={e=>e.currentTarget.type='date'}
+            placeholder="Birthday"
+        />
+        <select name="gender" id="gender">
+            <option value="" disabled selected hidden>Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="non-binary">Non-binary</option>
             <option value="other">Other</option>
-          </select>
+        </select>
 
         <div style="padding-top: 20px;">
             <PrimaryButton
@@ -90,8 +99,16 @@
                 >Sign up</PrimaryButton
             >
         </div>
-
     </form>
+    <h5 style="margin: 0; padding: 0; padding-bottom: 10px">
+        Already have an account? <a href="/login">Sign in</a>
+    </h5>
+    <h6 style="margin: 0; padding: 0; padding-bottom: 20px">
+        By clicking sign up, you agree to our <a href="/">Terms</a>,
+        <a href="/">Privacy</a>
+        and <a href="/">Cookies policy</a>. You might received SMS notifications
+        from us and can opt out any time.
+    </h6>
 </main>
 
 <style>
@@ -112,5 +129,18 @@
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+    select {
+        width: 308px;
+        height: 50px;
+        flex-shrink: 0;
+        border-radius: 100px;
+        border: 0;
+        background: #fcfcfc;
+
+        color: rgba(0, 0, 0, 0.79);
+        text-align: center;
+        font-size: 14px;
+        line-height: 171.5%;
     }
 </style>
