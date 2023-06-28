@@ -93,6 +93,15 @@
       align-items: center;
       padding-left: 1em;
     }
+    .links a {
+      text-decoration: none;
+      color: #000000;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    .links a:hover {
+      color: #fffafa;
+    }
 
     nav {
       position: relative;
@@ -104,6 +113,8 @@
       height: 4em;
       width: 4em;
       display: block;
+      margin: 5px;
+      
     }
 
     #profile-menu {
@@ -137,12 +148,19 @@
 
     #login-button {
       padding: 10px 20px;
-      background: #333;
-      color: #fff;
+      background: #3D74A6;
+      color: #fff8f8;
       border: none;
       cursor: pointer;
       border-radius: 0.7em;
+      text-decoration: none;
+      font-weight: bold;
+
     }
+    #login-button:hover {
+      opacity: 0.8;
+    }
+    
 
     #content {
       overflow: auto;
