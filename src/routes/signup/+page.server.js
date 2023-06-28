@@ -8,11 +8,12 @@ import { fail } from "@sveltejs/kit";
 export const actions = {
 	default: async ({ cookies, request, url }) => {
         const data = await request.formData();
-        const username = data.get("username");
+        const email = data.get("email");
         const password = data.get("password");
         const name = data.get("name");
         const lastname = data.get("lastname");
-        const email = data.get("email");
+        const birthday = data.get("birthday");
+        const gender = data.get("gender");
 
         if (typeof password !== "string") {
             return fail(422, {error: "Password must be a string"})
@@ -27,40 +28,40 @@ export const actions = {
         const {rows: [user]} = await sql`
             SELECT 1
             FROM users
-            WHERE username = ${username}
+            WHERE email = ${email}
             ;
         `
 
         if (user) {
-            return fail(409, {error: `User "${username}" already exists`})
+            return fail(409, {error: `User "${email}" already exists`})
         }
 
-        const {rows: [new_user]} = await sql`
-            INSERT INTO users (
-                username
-                , password_hash
-                , name
-                , lastname
-                , email
+        const {rows: [session]} = await sql`
+            WITH new_user AS (
+                INSERT INTO users (
+                    email
+                    , password_hash
+                    , name
+                    , lastname
+                    , birthday
+                    , gender
+                )
+                VALUES (
+                    ${email}
+                    , ${password_hash}
+                    , ${name}
+                    , ${lastname}
+                    , ${birthday}
+                    , ${gender}
+                )
+                RETURNING user_id
             )
-            VALUES (
-                ${username}
-                , ${password_hash}
-                , ${name}
-                , ${lastname}
-                , ${email || username}
-            )
-            RETURNING user_id
+            INSERT INTO sessions (user_id, expires_at)
+            SELECT user_id, NOW() + INTERVAL '1 day'
+            FROM new_user
+            RETURNING session_id
             ;
         `
-
-        // Insert session in DB and get session_id (uuid)
-        const {rows: [session]} = await sql`
-            INSERT INTO sessions (user_id, expires_at)
-                VALUES (${new_user.user_id}, NOW() + INTERVAL '1 day')
-                RETURNING session_id
-                ;
-        `;
 
         cookies.set("session", session.session_id, cookies_options);
 

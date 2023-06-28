@@ -11,7 +11,6 @@
     <thead>
       <tr>
         <th>Email</th>
-        <th>Username</th>
         <th>Name</th>
         <th>Last Name</th>
         <th></th>
@@ -21,12 +20,11 @@
       {#each data.users as user}
         <tr>
           <td>{user.email}</td>
-          <td>{user.username}</td>
           <td>{user.name}</td>
           <td>{user.lastname}</td>
           <td class="verify">
             <form method="post" action="?/verify">
-              <input type="hidden" name="username" value="{user.username}">
+              <input type="hidden" name="email" value="{user.email}">
               <button type="submit">Verify</button>
             </form>
           </td>

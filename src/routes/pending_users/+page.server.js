@@ -8,10 +8,9 @@ export const load = checkPermissions_MW(
     async () => {
         const {rows: users} = await sql`
             SELECT
-                username
+                email
                 , name
                 , lastname
-                , email
             FROM users
             WHERE is_verified = FALSE
             ORDER BY user_id
@@ -29,13 +28,13 @@ export const actions = {
         async ({ request }) => {
 
             const data = await request.formData();
-            const username = data.get("username");
+            const email = data.get("email");
 
             // Remove session from DB
             await sql`
                 UPDATE users
                 SET is_verified = TRUE
-                WHERE username = ${username}
+                WHERE email = ${email}
                 ;
             `;
 

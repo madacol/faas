@@ -5,10 +5,9 @@ export async function load() {
     const {rows: pals} = await sql`
         SELECT
             user_id
-            , username
+            , email
             , name
             , lastname
-            , email
             , bio
         FROM users
         LIMIT 10

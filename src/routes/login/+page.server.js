@@ -8,7 +8,7 @@ import { fail } from "@sveltejs/kit";
 export const actions = {
 	default: async ({ cookies, request, url }) => {
         const data = await request.formData();
-        const username = data.get("username");
+        const email = data.get("email");
         const password = data.get("password");
 
         if (typeof password !== "string") {
@@ -20,12 +20,12 @@ export const actions = {
                 user_id,
                 password_hash
             FROM users
-            WHERE username=${username}
+            WHERE email=${email}
             ;
         `
 
         if (!user) {
-            return fail(422, {error: `User "${username}" does not exist`})
+            return fail(422, {error: `User "${email}" does not exist`})
         }
 
         {
