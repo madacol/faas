@@ -67,8 +67,6 @@
       height: 100vh;
       min-height: 400px;
       align-items: stretch;
-      
-      
     }
    
     header {

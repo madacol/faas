@@ -50,15 +50,4 @@
         max-width: 20rem;
         padding: 1rem;
     }
-    label {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    input {
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        border: 1px solid #ccc;
-    }
 </style>

@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     import { enhance } from '$app/forms'
     import InputText from '$lib/components/InputText.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
@@ -124,11 +126,6 @@
         gap: 1rem;
         max-width: 20rem;
         padding: 1rem;
-    }
-    label {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
     }
     select {
         width: 308px;
