@@ -3,6 +3,7 @@
 
     import Input from '$lib/components/Input.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import { PASSWORD_MINLENGTH } from '$lib/config.js'
 
     export let form
 
@@ -77,12 +78,14 @@
             required
             placeholder="Password"
             autocomplete="new-password"
+            minlength={PASSWORD_MINLENGTH}
         />
         <Input
             bind:value={password_repeat}
             type="password"
             placeholder="Confirm password"
             autocomplete="new-password"
+            minlength={PASSWORD_MINLENGTH}
         />
         <Input
             name="birthday"

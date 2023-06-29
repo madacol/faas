@@ -1,4 +1,4 @@
-import { DATABASE_URL, SECRET_SESSION, NODE_ENV, DOMAIN } from "$env/static/private";
+import { DATABASE_URL, NODE_ENV, DOMAIN } from "$env/static/private";
 
 export const database = {
   common: {
