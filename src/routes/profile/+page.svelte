@@ -6,24 +6,51 @@
     export let data
     let {
         name,
-            lastname,
-            email,
-            gender,
-            birthday,
-            bio,
-            pal_requests_count
-        } = data.user
+        lastname,
+        email,
+        gender,
+        birthday,
+        bio,
+        image_data_url,
+        pal_requests_count
+    } = data.user
 
+    /**
+     * @param {Event & { currentTarget: EventTarget & HTMLInputElement; }} event
+     */
+    function handleFileSelect(event) {
+        if (!event?.currentTarget?.files?.length) return;
+
+        const file = event.currentTarget.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          // @ts-ignore
+          const base64String = event.target.result;
+          // Do something with the base64String, like displaying it or sending it to the server
+          if (typeof base64String !== 'string') {
+            console.error('Result is not a string', base64String);
+            return;
+          }
+          image_data_url = base64String;
+        };
+
+        reader.readAsDataURL(file);
+    }
 </script>
 
 <main style="display: flex; flex-direction: column">
-    <img
-        src="/logo.png"
-        alt="logo"
-        style="padding-top: 10px; width:90px; align-self:center"
-    />
 
     <form method="post">
+        <label style="align-self:center;">
+            <img
+                src={image_data_url ?? '/no_profile.png'}
+                alt="Profile"
+                height="100px"
+            >
+            <input type="file" hidden accept="image/*" on:change={handleFileSelect} />
+            <input type="hidden" name="image_data_url" value={image_data_url} />
+        </label>
         <h2 style="margin: 0; padding:0;">{name + " " + lastname}</h2>
 
         <p><i class="fa fa-map-marker" aria-hidden="true" /> Windsor, Canada</p>
@@ -36,12 +63,14 @@
             {pal_requests_count}
         </p>
 
-        <TextArea name="bio" placeholder="User Bio" required value={bio} />
+        <TextArea name="bio" placeholder="User Bio" value={bio} />
+
         <PrimaryButton type="submit">Update</PrimaryButton>
-        <LinkButton>View invitations to meet</LinkButton>
     </form>
 
+    <LinkButton>View invitations to meet</LinkButton>
 </main>
+
 
 <style>
     main {
