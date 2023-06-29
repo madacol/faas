@@ -4,7 +4,16 @@
     import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
-    let bio = data.user.bio
+    let {
+        name,
+            lastname,
+            email,
+            gender,
+            birthday,
+            bio,
+            pal_requests_count
+        } = data.user
+
 </script>
 
 <main style="display: flex; flex-direction: column">
@@ -15,27 +24,23 @@
     />
 
     <form method="post">
-        <h2 style="margin: 0; padding:0;">Mary O’Brien</h2>
+        <h2 style="margin: 0; padding:0;">{name + " " + lastname}</h2>
 
         <p><i class="fa fa-map-marker" aria-hidden="true" /> Windsor, Canada</p>
-        <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: Female</p>
+        <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: {gender}</p>
         <p>
-            <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on May 6th
-            1977
-        </p>
-        <p>
-            <i class="fa fa-clock-o" aria-hidden="true" /> Attendance score: 10/10
+            <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on {birthday}
         </p>
         <p>
             <i class="fa fa-comments-o" aria-hidden="true" /> Invitations to meet:
-            1
+            {pal_requests_count}
         </p>
 
         <TextArea name="bio" placeholder="User Bio" required value={bio} />
         <PrimaryButton type="submit">Update</PrimaryButton>
+        <LinkButton>View invitations to meet</LinkButton>
     </form>
 
-    <LinkButton>View invitations to meet</LinkButton>
 </main>
 
 <style>
@@ -43,6 +48,7 @@
         display: flex;
         justify-content: center;
         margin-bottom: 0.5rem;
+        margin-top: 1rem;
     }
     form {
         display: flex;

@@ -4,11 +4,21 @@ import { sql } from "$lib/server/db";
 export async function load({ locals }) {
     const user_id = locals.user.user_id;
     const {rows: [user]} = await sql`
-        SELECT bio
+        SELECT 
+            name,
+            lastname,
+            email,
+            gender,
+            birthday,
+            bio,
+            COUNT(pal_requests.requestee_id) AS pal_requests_count
             FROM users
+            JOIN pal_requests ON pal_requests.requestee_id = users.user_id
             WHERE user_id=${user_id}
+            GROUP BY user_id
             ;
     `;
+
     return { user };
 }
 
