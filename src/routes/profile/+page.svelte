@@ -1,5 +1,6 @@
 <script>
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
     let bio = data.user.bio
@@ -21,7 +22,7 @@
         <p><i class="fa fa-clock-o" aria-hidden="true"></i> Attendance score: 10/10</p>
         <p><i class="fa fa-comments-o" aria-hidden="true"></i> Invitations to meet: 1</p>
 
-        <textarea name="bio" placeholder="User Bio" required value={bio} />
+        <TextArea name="bio" placeholder="User Bio" required value={bio} />
 
         <PrimaryButton type="submit">Submit</PrimaryButton>
     </form>
@@ -42,19 +43,6 @@
         text-align: start;
         max-width: 50em;
         align-self: center;
-    }
-    textarea {
-        font-size: 0.8em;
-        height: 5em;
-        border-radius: 13px;
-        padding: 0.5em;
-        height: 150px;
-        resize: none;
-        margin-bottom: 20px;
-    }
-
-    textarea:focus {
-        outline: none;
     }
     p {
         margin: 0;
