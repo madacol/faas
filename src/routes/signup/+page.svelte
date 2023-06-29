@@ -8,9 +8,9 @@
 
     let password = ''
     let password_repeat = ''
-    /**
-     * @type {string | null}
-     */
+    let email = ''
+    let email_repeat = ''
+    /** @type {string | null} */
     let error = null
 
     function validate() {
@@ -22,7 +22,9 @@
         return true
     }
 
-    $: if (password !== password_repeat) {
+    $: if (email_repeat !== '' && email !== email_repeat) {
+        error = 'Emails do not match'
+    } else if (password !== password_repeat) {
         error = 'Passwords do not match'
     } else {
         error = null
@@ -55,11 +57,16 @@
             required
             placeholder="Last Name"
         />
-        <Input name="email" type="email" required placeholder="Email" />
         <Input
-            name="email_repeat"
+            name="email"
             type="email"
+            bind:value={email}
             required
+            placeholder="Email"
+        />
+        <Input
+            type="email"
+            bind:value={email_repeat}
             placeholder="Confirm email"
         />
 
