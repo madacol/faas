@@ -28,7 +28,7 @@
         padding: 0.5em;
         height: 150px;
         resize: none;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
 
     textarea:focus {

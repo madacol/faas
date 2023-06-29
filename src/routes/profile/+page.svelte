@@ -1,4 +1,5 @@
 <script>
+    import LinkButton from '$lib/components/LinkButton.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
     import TextArea from '$lib/components/TextArea.svelte'
 
@@ -10,28 +11,38 @@
     <img
         src="/logo.png"
         alt="logo"
-        style="padding-top: 10px; width:110px; align-self:center"
+        style="padding-top: 10px; width:90px; align-self:center"
     />
 
     <form method="post">
         <h2 style="margin: 0; padding:0;">Mary O’Brien</h2>
 
-        <p><i class="fa fa-map-marker" aria-hidden="true"/> Windsor, Canada</p>
-        <p><i class="fa fa-user-o" aria-hidden="true"></i> Gender: Female</p>
-        <p><i class="fa fa-calendar-o" aria-hidden="true"></i> Birthday on May 6th 1977</p>
-        <p><i class="fa fa-clock-o" aria-hidden="true"></i> Attendance score: 10/10</p>
-        <p><i class="fa fa-comments-o" aria-hidden="true"></i> Invitations to meet: 1</p>
+        <p><i class="fa fa-map-marker" aria-hidden="true" /> Windsor, Canada</p>
+        <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: Female</p>
+        <p>
+            <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on May 6th
+            1977
+        </p>
+        <p>
+            <i class="fa fa-clock-o" aria-hidden="true" /> Attendance score: 10/10
+        </p>
+        <p>
+            <i class="fa fa-comments-o" aria-hidden="true" /> Invitations to meet:
+            1
+        </p>
 
         <TextArea name="bio" placeholder="User Bio" required value={bio} />
-
-        <PrimaryButton type="submit">Submit</PrimaryButton>
+        <PrimaryButton type="submit">Update</PrimaryButton>
     </form>
+
+    <LinkButton>View invitations to meet</LinkButton>
 </main>
 
 <style>
     main {
         display: flex;
         justify-content: center;
+        margin-bottom: 0.5rem;
     }
     form {
         display: flex;
@@ -47,5 +58,6 @@
     p {
         margin: 0;
         padding: 0;
+        font-size: small;
     }
 </style>
