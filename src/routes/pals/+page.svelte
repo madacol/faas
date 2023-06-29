@@ -8,7 +8,7 @@
             <!-- <p class="score">score 7.8/10</p> -->
             <p class="age">Age {pal.birthday} | {pal.gender}</p>
             <!-- svelte-ignore a11y-img-redundant-alt -->
-            <img src={pal.imgURL ?? '/no_profile.png'} alt="Profile Picture" />
+            <img src={pal.image_data_url ?? '/no_profile.png'} alt="Profile Picture" />
             <div class="bio">
                 <p>{pal.bio}</p>
             </div>
@@ -43,10 +43,16 @@
     .user img {
         border-radius: 50%;
         margin: auto;
+        grid-row: 1 / 3;
+        width: 8em;
+        aspect-ratio: 1/1;
     }
     .age,
     .bio {
         grid-column: 2 / 4;
+    }
+    .bio {
+        min-height: 8em;
     }
 
     button {
@@ -74,8 +80,6 @@
     .actions {
         grid-row: 3;
         grid-column: 3;
-    }
-    .bio {
     }
     .bio p {
         width: 100%;
