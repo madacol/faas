@@ -69,11 +69,13 @@
             type="password"
             required
             placeholder="Password"
+            autocomplete="new-password"
         />
         <Input
             bind:value={password_repeat}
             type="password"
             placeholder="Confirm password"
+            autocomplete="new-password"
         />
         <Input
             name="birthday"

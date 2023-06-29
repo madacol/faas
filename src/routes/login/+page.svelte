@@ -20,6 +20,7 @@
             type="email"
             required
             placeholder="Enter your username"
+            autocomplete="username"
         />
 
         <Input
@@ -27,6 +28,7 @@
             type="password"
             required
             placeholder="Enter your password"
+            autocomplete="current-password"
         />
         <div style="padding-top: 20px;">
             <PrimaryButton type="submit">Log in</PrimaryButton>
