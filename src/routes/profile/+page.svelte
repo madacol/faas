@@ -42,7 +42,7 @@
 <main style="display: flex; flex-direction: column">
 
     <form method="post">
-        <label style="align-self:center;">
+        <label class="profile-picture">
             <img
                 src={image_data_url ?? '/no_profile.png'}
                 alt="Profile"
@@ -94,5 +94,11 @@
         margin: 0;
         padding: 0;
         font-size: small;
+    }
+    .profile-picture {
+        cursor: pointer;
+        border-radius: 50%;
+        overflow: hidden;
+        align-self:center;
     }
 </style>
