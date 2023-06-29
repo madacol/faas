@@ -1,22 +1,21 @@
 <script>
-    export let data;
+    export let data
 </script>
 
 <main>
     {#each data.pals as pal}
         <article class="user">
-            <p class="score">score 7.8/10</p>
-            <p class="age">age 35 | female</p>
+            <!-- <p class="score">score 7.8/10</p> -->
+            <p class="age">Age {pal.birthday} | {pal.gender}</p>
             <!-- svelte-ignore a11y-img-redundant-alt -->
-            <img src="{pal.imgURL ?? "/no_profile.png"}" alt="Profile Picture">
+            <img src={pal.imgURL ?? '/no_profile.png'} alt="Profile Picture" />
             <div class="bio">
                 <p>{pal.bio}</p>
             </div>
             <div class="actions">
-                <form class="meet" method="post" action="?/meet">
-                    <input type="hidden" name="pal_id" value="{pal.user_id}">
-                    <button type="submit">Meet!</button>
-                </form>
+                <a href="/pay_per_meet/{pal.user_id}">
+                    <button>Meet!</button>
+                </a>
             </div>
         </article>
     {/each}
@@ -45,13 +44,14 @@
         border-radius: 50%;
         margin: auto;
     }
-    .age, .bio {
+    .age,
+    .bio {
         grid-column: 2 / 4;
     }
 
-    .meet button {
+    button {
         width: 100%;
-        background-color: #4CAF50;
+        background-color: #3d74a6;
         border: none;
         color: white;
         text-align: center;

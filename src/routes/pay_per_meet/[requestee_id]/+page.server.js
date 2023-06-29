@@ -1,7 +1,6 @@
 import { sql } from "$lib/server/db";
 
-/** @type {import('@sveltejs/kit').Load} */
-export async function load({ locals }) {
+export async function load({ locals, params }) {
     const user_id = locals.user.user_id;
     const {rows: [user]} = await sql`
         SELECT 
@@ -10,12 +9,9 @@ export async function load({ locals }) {
             email,
             gender,
             to_char(birthday,'YYYY-MM-DD') as birthday,
-            bio,
-            COUNT(pal_requests.requestee_id) AS pal_requests_count
+            bio
             FROM users
-            JOIN pal_requests ON pal_requests.requestee_id = users.user_id
-            WHERE user_id=${user_id}
-            GROUP BY user_id
+            WHERE user_id=${params.requestee_id}
             ;
     `;
     console.log(user);

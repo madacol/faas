@@ -9,11 +9,14 @@ export async function load() {
             , name
             , lastname
             , bio
+            -- calculate age
+            , EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthday)) as birthday
+            , gender
         FROM users
         LIMIT 10
         ;
     `
-
+console.log(pals);
 
     return {
         pals

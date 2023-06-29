@@ -1,8 +1,11 @@
 <script>
-   
+   /**
+     * @type {string}
+     */
+    export let href;
 </script>
 
-<a href="/">
+<a {href} {...$$restProps}>
     <button>
         <slot />
     </button>

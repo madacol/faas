@@ -8,7 +8,7 @@
         data.user
 </script>
 
-<main style="display: flex; flex-direction: column">
+<main>
     <img
         src="/logo.png"
         alt="logo"
@@ -23,21 +23,27 @@
         <p>
             <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on {birthday}
         </p>
+        <br />
         <p>
-            <i class="fa fa-comments-o" aria-hidden="true" /> Invitations to
-            meet:
-            {pal_requests_count}
+            To proceed with meeting {name}, a payment of 4.99 CAD is required.
         </p>
-
-        <TextArea name="bio" placeholder="User Bio" required value={bio} />
-        <PrimaryButton type="submit">Update</PrimaryButton>
+        <p>
+            If {name} also pays to meet you, is because {name} is genuinely interested.
+        </p>
+        <p>
+            Don't worry, if {name}doesn't make the payment in 24 hours, we'll
+            refund you.
+        </p>
+        <p />
+        <PrimaryButton type="submit">Pay</PrimaryButton>
     </form>
-    <LinkButton href="/">View invitations to meet</LinkButton>
+    <LinkButton href="/pals">Keep Searching</LinkButton>
 </main>
 
 <style>
     main {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         margin-bottom: 0.5rem;
         margin-top: 1rem;
@@ -50,7 +56,7 @@
         gap: 1rem;
         padding: 1rem;
         text-align: start;
-        max-width: 50em;
+        max-width: 17em;
         align-self: center;
     }
     p {
