@@ -1,11 +1,12 @@
 <script>
-    /** @type {"button" | "submit" | "reset" | null | undefined} */
-    export let type = 'button'
+   
 </script>
 
-<button {type}>
-    <slot />
-</button>
+<a href="/">
+    <button>
+        <slot />
+    </button>
+</a>
 
 <style>
     button {
@@ -19,7 +20,7 @@
         color: #fff;
         text-align: center;
         font-size: 20px;
-        
+
         font-weight: 700;
         line-height: 171.5%;
         align-self: center;
