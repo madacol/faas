@@ -39,19 +39,18 @@
     }
 </script>
 
-<main style="display: flex; flex-direction: column">
+<main>
 
     <form method="post">
         <label class="profile-picture">
             <img
                 src={image_data_url ?? '/no_profile.png'}
                 alt="Profile"
-                height="100px"
             >
             <input type="file" hidden accept="image/*" on:change={handleFileSelect} />
             <input type="hidden" name="image_data_url" value={image_data_url} />
         </label>
-        <h2 style="margin: 0; padding:0;">{name + " " + lastname}</h2>
+        <span>{name + " " + lastname}</span>
 
         <p><i class="fa fa-map-marker" aria-hidden="true" /> Windsor, Canada</p>
         <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: {gender}</p>
@@ -59,36 +58,44 @@
             <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on {birthday}
         </p>
         <p>
-            <i class="fa fa-comments-o" aria-hidden="true" /> Invitations to meet:
+            <i class="fa fa-comments-o" aria-hidden="true" /> Invitations to
+            meet:
             {pal_requests_count}
         </p>
 
         <TextArea name="bio" placeholder="User Bio" value={bio} />
 
         <PrimaryButton type="submit">Update</PrimaryButton>
+        <LinkButton href="/">View invitations to meet</LinkButton>
     </form>
-
-    <LinkButton>View invitations to meet</LinkButton>
 </main>
 
 
 <style>
     main {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        margin-bottom: 0.5rem;
-        margin-top: 1rem;
+    }
+    span {
+        font-size: 1.5rem;
+        text-align: center;
     }
     form {
         display: flex;
         flex-grow: 1;
         flex-direction: column;
         align-items: stretch;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 1em;
+        padding: 2em;
         text-align: start;
         max-width: 50em;
         align-self: center;
+    }
+    img {
+        display: block;
+        width: 8em;
+        aspect-ratio: 1/1;
     }
     p {
         margin: 0;
