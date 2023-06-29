@@ -1,6 +1,6 @@
 <script>
     import { enhance } from '$app/forms'
-    import InputText from '$lib/components/InputText.svelte'
+    import Input from '$lib/components/Input.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
 
     export let form
@@ -15,14 +15,14 @@
     <h2>Welcome back!</h2>
     <img src="/login_image_decor.png" alt="image_decor" />
     <form method="post" use:enhance>
-        <InputText
+        <Input
             name="email"
-            type="text"
+            type="email"
             required
             placeholder="Enter your username"
         />
 
-        <InputText
+        <Input
             name="password"
             type="password"
             required

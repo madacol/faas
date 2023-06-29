@@ -1,9 +1,5 @@
 <script>
-    import { enhance } from '$app/forms'
-    import InputText from '$lib/components/InputText.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
-
-    export let form
 </script>
 
 <main>
@@ -51,23 +47,5 @@
         flex-direction: column;
         align-items: center;
         margin: auto;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 20rem;
-        padding: 1rem;
-    }
-    label {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-    input {
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        border: 1px solid #ccc;
     }
 </style>
