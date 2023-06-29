@@ -1,14 +1,29 @@
 <script>
-    export let data;
-    let bio = data.user.bio;
+    import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+
+    export let data
+    let bio = data.user.bio
 </script>
 
-<main>
-    <form method="post">
-        <h2>Public Bio</h2>
-        <textarea name="bio" required value={bio}/>
+<main style="display: flex; flex-direction: column">
+    <img
+        src="/logo.png"
+        alt="logo"
+        style="padding-top: 10px; width:110px; align-self:center"
+    />
 
-        <button type="submit">Submit</button>
+    <form method="post">
+        <h2 style="margin: 0; padding:0;">Mary O’Brien</h2>
+
+        <p><i class="fa fa-map-marker" aria-hidden="true"/> Windsor, Canada</p>
+        <p><i class="fa fa-user-o" aria-hidden="true"></i> Gender: Female</p>
+        <p><i class="fa fa-calendar-o" aria-hidden="true"></i> Birthday on May 6th 1977</p>
+        <p><i class="fa fa-clock-o" aria-hidden="true"></i> Attendance score: 10/10</p>
+        <p><i class="fa fa-comments-o" aria-hidden="true"></i> Invitations to meet: 1</p>
+
+        <textarea name="bio" placeholder="User Bio" required value={bio} />
+
+        <PrimaryButton type="submit">Submit</PrimaryButton>
     </form>
 </main>
 
@@ -16,7 +31,6 @@
     main {
         display: flex;
         justify-content: center;
-        margin: 2em;
     }
     form {
         display: flex;
@@ -27,14 +41,23 @@
         padding: 1rem;
         text-align: start;
         max-width: 50em;
+        align-self: center;
     }
     textarea {
         font-size: 0.8em;
         height: 5em;
+        border-radius: 13px;
+        padding: 0.5em;
+        height: 150px;
+        resize: none;
+        margin-bottom: 20px;
     }
-    button {
-        background-color: #4CAF50;
-        color: white;
+
+    textarea:focus {
+        outline: none;
+    }
+    p {
+        margin: 0;
+        padding: 0;
     }
 </style>
-

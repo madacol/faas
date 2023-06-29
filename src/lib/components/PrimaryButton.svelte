@@ -22,6 +22,7 @@
         
         font-weight: 700;
         line-height: 171.5%;
+        align-self: center;
     }
     button:hover {
         background-color: #3d74a6;

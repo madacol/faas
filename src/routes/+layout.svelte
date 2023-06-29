@@ -61,6 +61,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
+      font-weight: bold;
       font-size: calc(10px + 1vmin);
       display: flex;
       flex-direction: column;
@@ -129,13 +130,18 @@
     }
 
     #profile-menu-button {
-      background: #333;
-      color: #fff;
-      border: none;
       padding: 10px 20px;
+      background: #3D74A6;
+      color: #fff8f8;
+      border: none;
+      cursor: pointer;
       border-radius: 0.7em;
+      text-decoration: none;
+      font-weight: bold;
     }
-
+    #profile-menu-button:hover {
+      opacity: 0.8;
+    }
     #profile-menu.open {
       display: flex;
     }
