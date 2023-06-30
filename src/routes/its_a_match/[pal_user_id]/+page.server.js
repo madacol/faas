@@ -3,6 +3,7 @@ import { sql } from "$lib/server/db";
 
 export async function load({ locals, params }) {
     const user_id = locals.user.user_id;
+    const user_image_url = locals.user.image_data_url;
     const {rows: [user]} = await sql`
         SELECT 
         user_id,
@@ -10,6 +11,7 @@ export async function load({ locals, params }) {
             lastname,
             email,
             gender,
+            image_data_url,
             to_char(birthday,'YYYY-MM-DD') as birthday,
             bio
             FROM users
@@ -17,7 +19,7 @@ export async function load({ locals, params }) {
             ;
     `;
     console.log(user);
-    return { user };
+    return { user, user_image_url };
 }
 
 

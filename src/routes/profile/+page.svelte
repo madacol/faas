@@ -66,7 +66,7 @@
         <TextArea name="bio" placeholder="User Bio" value={bio} />
 
         <PrimaryButton type="submit">Update</PrimaryButton>
-        <LinkButton href="/">View invitations to meet</LinkButton>
+        <!-- <LinkButton href="/">View invitations to meet</LinkButton> -->
     </form>
 </main>
 

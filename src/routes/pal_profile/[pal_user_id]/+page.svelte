@@ -4,16 +4,13 @@
     import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
-    let { user_id, name, lastname, email, gender, birthday, bio, pal_requests_count } =
+    let { user_id, name, lastname, email, gender, birthday, bio, image_data_url } =
         data.user
 </script>
 
 <main style="display: flex; flex-direction: column">
-    <img
-        src="/logo.png"
-        alt="logo"
-        style="padding-top: 10px; width:90px; align-self:center"
-    />
+    <img src={image_data_url} alt="profile_picture" />
+
 
     <form method="post">
         <h2 style="margin: 0; padding:0;">{name + ' ' + lastname}</h2>
@@ -51,5 +48,14 @@
         margin: 0;
         padding: 0;
         font-size: small;
+    }
+    img {
+        display: block;
+        width: 8em;
+        aspect-ratio: 1/1;
+        padding-top: 10px;
+        align-self: center;
+        border-radius: 50%;
+        overflow: hidden;
     }
 </style>

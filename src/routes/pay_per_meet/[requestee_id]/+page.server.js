@@ -9,7 +9,8 @@ export async function load({ locals, params }) {
             email,
             gender,
             to_char(birthday,'YYYY-MM-DD') as birthday,
-            bio
+            bio,
+            image_data_url
             FROM users
             WHERE user_id=${params.requestee_id}
             ;

@@ -11,9 +11,9 @@ export async function load({ locals, params }) {
             lastname,
             email,
             gender,
+            image_data_url,
             to_char(birthday,'YYYY-MM-DD') as birthday,
-            bio,
-            COUNT(pal_requests.requestee_id) AS pal_requests_count
+            bio
             FROM users
             JOIN pal_requests ON pal_requests.requestee_id = users.user_id
             WHERE user_id=${params.pal_user_id}

@@ -13,33 +13,32 @@
         gender,
         birthday,
         bio,
+        image_data_url,
         pal_requests_count,
     } = data.user
 </script>
 
 <main>
-    <img
-        src="/logo.png"
-        alt="logo"
-        style="padding-top: 10px; width:90px; align-self:center"
-    />
-
     <div>
         <h2>It's a match</h2>
+        <div style="display: flex; flex-direction:row">
+            <img src={data.user_image_url} alt="profile_picture" />
+            <img src={image_data_url} alt="profile_picture" />
+        </div>
         <p />
 
         <p>
-            You and {name} have shown interest! you can now chat and maybe propose
-            an in-person meeting
+            You and {name} have shown interest! Now you can see {name} contact information
+            on they profile, chat and maybe propose an in-person meeting.
         </p>
 
         <OvalLinkButton href="/pal_profile/{user_id}"
             >View {name}'s profile</OvalLinkButton
         >
-        
-        <OvalLinkButton href="/chat/{user_id}" disabled
+
+        <!-- <OvalLinkButton href="/chat/{user_id}" disabled
             >Send a message <i class="fa fa-comment" aria-hidden="true" />
-        </OvalLinkButton>
+        </OvalLinkButton> -->
 
         <LinkButton href="/pals"
             >Keep Searching <i
@@ -58,21 +57,12 @@
         margin-bottom: 0.5rem;
         margin-top: 1rem;
     }
-    form {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1rem;
-        padding: 1rem;
-        text-align: start;
-        max-width: 17em;
-        align-self: center;
-    }
+
     p {
         margin: 0;
         padding: 0;
         font-size: small;
+        text-align: center;
     }
     div {
         display: flex;
@@ -83,5 +73,15 @@
         text-align: start;
         max-width: 17em;
         align-self: center;
+    }
+
+    img {
+        display: block;
+        width: 8em;
+        aspect-ratio: 1/1;
+        padding-top: 10px;
+        align-self: center;
+        border-radius: 50%;
+        overflow: hidden;
     }
 </style>

@@ -1,9 +1,12 @@
 <script>
-    /** @type {"button" | "submit" | "reset" | null | undefined} */
+
+    /** @type {"button" | "submit" | "reset" | null | undefined } */
     export let type = 'button'
+      /** @type {boolean} */
+      export let disabled = false
 </script>
 
-<button {type}>
+<button {type} {disabled}>
     <slot />
 </button>
 

@@ -4,15 +4,14 @@
     import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
-    let { name, lastname, email, gender, birthday, bio, pal_requests_count } =
+    let { name, lastname, email, gender, birthday, bio, pal_requests_count, image_data_url } =
         data.user
 </script>
 
 <main>
     <img
-        src="/logo.png"
+        src={image_data_url}
         alt="logo"
-        style="padding-top: 10px; width:90px; align-self:center"
     />
 
     <form method="post">
@@ -35,7 +34,7 @@
             refund you.
         </p>
         <p />
-        <PrimaryButton type="submit">Pay</PrimaryButton>
+        <PrimaryButton type="submit" disabled>Pay</PrimaryButton>
     </form>
     <LinkButton href="/pals">Keep Searching</LinkButton>
 </main>
@@ -63,5 +62,15 @@
         margin: 0;
         padding: 0;
         font-size: small;
+    }
+
+    img {
+        display: block;
+        width: 8em;
+        aspect-ratio: 1/1;
+        padding-top: 10px;
+        align-self: center;
+        border-radius: 50%;
+        overflow: hidden;
     }
 </style>
