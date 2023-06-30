@@ -4,7 +4,16 @@
     import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
-   
+    let {
+        user_id,
+        name,
+        lastname,
+        email,
+        gender,
+        birthday,
+        bio,
+        pal_requests_count,
+    } = data.user
 </script>
 
 <main>
@@ -14,16 +23,26 @@
         style="padding-top: 10px; width:90px; align-self:center"
     />
 
-    <form method="post">
-        
-       
-        <p>
-           its a match
-        </p>
+    <div>
+        <p>its a match</p>
         <p />
-        
-        <LinkButton href="/pals">Keep Searching <i class="fa fa-plus-circle" aria-hidden="true"></i></LinkButton>
-    </form>
+
+        <p>
+            You and {name} have shown interest! you can now chat and maybe propose
+            an in-person meeting
+        </p>
+
+        <LinkButton href="/pal_profile/{user_id}"
+            >View {name} profile</LinkButton
+        >
+
+        <LinkButton href="/pals"
+            >Keep Searching <i
+                class="fa fa-plus-circle"
+                aria-hidden="true"
+            /></LinkButton
+        >
+    </div>
 </main>
 
 <style>

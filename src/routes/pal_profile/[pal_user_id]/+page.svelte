@@ -4,7 +4,7 @@
     import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
-    let { name, lastname, email, gender, birthday, bio, pal_requests_count } =
+    let { user_id, name, lastname, email, gender, birthday, bio, pal_requests_count } =
         data.user
 </script>
 
@@ -20,19 +20,11 @@
 
         <p><i class="fa fa-map-marker" aria-hidden="true" /> Windsor, Canada</p>
         <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: {gender}</p>
-        <p>
-            <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on {birthday}
-        </p>
-        <p>
-            <i class="fa fa-comments-o" aria-hidden="true" /> Invitations to
-            meet:
-            {pal_requests_count}
-        </p>
+     
 
-        <TextArea name="bio" placeholder="User Bio" required value={bio} />
-        <PrimaryButton type="submit">Update</PrimaryButton>
+        <TextArea disabled name="bio" placeholder="User Bio" required value={bio} />
+        <LinkButton href="/its_a_match/{user_id}">Go back</LinkButton>
     </form>
-    <LinkButton href="/">View invitations to meet</LinkButton>
 </main>
 
 

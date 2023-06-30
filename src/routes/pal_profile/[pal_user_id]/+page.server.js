@@ -6,6 +6,7 @@ export async function load({ locals, params }) {
     const user_id = locals.user.user_id;
     const {rows: [user]} = await sql`
         SELECT 
+        user_id,
             name,
             lastname,
             email,

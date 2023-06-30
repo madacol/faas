@@ -11,12 +11,17 @@
     /** @type {boolean} */
     export let required = false
 
+     /** @type {boolean} */
+     export let disabled = false
+
+
     /** @type {string} */
     export let value = ""
+
      
 </script>
 
-<textarea name={name} placeholder= {placeholder} required value={value} />
+<textarea name={name} placeholder= {placeholder} required value={value} disabled/>
 
 
 <style>
