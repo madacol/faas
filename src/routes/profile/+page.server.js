@@ -18,7 +18,6 @@ export async function load({ locals }) {
         GROUP BY user_id
         ;
     `;
-    console.log(user);
     return { user };
 }
 
