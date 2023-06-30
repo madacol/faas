@@ -1,17 +1,17 @@
 <script>
 // @ts-nocheck
 
-    import { enhance } from '$app/forms'
-    import InputText from '$lib/components/InputText.svelte'
+    import Input from '$lib/components/Input.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import { PASSWORD_MINLENGTH } from '$lib/config.js'
 
     export let form
 
     let password = ''
     let password_repeat = ''
-    /**
-     * @type {string | null}
-     */
+    let email = ''
+    let email_repeat = ''
+    /** @type {string | null} */
     let error = null
 
     function validate() {
@@ -23,7 +23,9 @@
         return true
     }
 
-    $: if (password !== password_repeat) {
+    $: if (email_repeat !== '' && email !== email_repeat) {
+        error = 'Emails do not match'
+    } else if (password !== password_repeat) {
         error = 'Passwords do not match'
     } else {
         error = null
@@ -49,45 +51,51 @@
     </div>
 
     <form method="post">
-        <InputText name="name" type="text" required placeholder="First Name" />
-        <InputText
+        <Input name="name" type="text" required placeholder="First Name" />
+        <Input
             name="lastname"
             type="text"
             required
             placeholder="Last Name"
         />
-        <InputText name="email" type="email" required placeholder="Email" />
-        <InputText
-            name="email_repeat"
+        <Input
+            name="email"
             type="email"
+            bind:value={email}
             required
+            placeholder="Email"
+        />
+        <Input
+            type="email"
+            bind:value={email_repeat}
             placeholder="Confirm email"
         />
 
-        <InputText
+        <Input
             bind:value={password}
             name="password"
             type="password"
             required
             placeholder="Password"
+            autocomplete="new-password"
+            minlength={PASSWORD_MINLENGTH}
         />
-        <InputText
+        <Input
             bind:value={password_repeat}
-            name="password_repeat"
             type="password"
-            required
             placeholder="Confirm password"
+            autocomplete="new-password"
+            minlength={PASSWORD_MINLENGTH}
         />
-        <InputText
-            bind:value={password}
+        <Input
             name="birthday"
             type="text"
             required
             on:focus={e=>e.currentTarget.type='date'}
             placeholder="Birthday"
         />
-        <select name="gender" id="gender">
-            <option value="" disabled selected hidden>Gender</option>
+        <select name="gender">
+            <option disabled selected hidden>Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="non-binary">Non-binary</option>

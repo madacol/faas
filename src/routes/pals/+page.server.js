@@ -12,6 +12,7 @@ export async function load() {
             -- calculate age
             , EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthday)) as birthday
             , gender
+            , image_data_url
         FROM users
         LIMIT 10
         ;

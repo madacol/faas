@@ -1,7 +1,7 @@
 exports.up = pgm => {
     pgm.sql`
         UPDATE users
-        SET email = username
+        SET email = CONCAT(username, '@example.com')
         WHERE email IS NULL;
 
         ALTER TABLE users

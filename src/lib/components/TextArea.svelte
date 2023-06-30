@@ -1,28 +1,19 @@
 <script>
-    /** @type {string} */
-    export let placeholder
-
-    /** @type {string} */
-    export let name
-
-    /** @type {string} */
-    export let type = 'text'
-
-    /** @type {boolean} */
-    export let required = false
-
-     /** @type {boolean} */
-     export let disabled = false
-
-
-    /** @type {string} */
-    export let value = ""
-
-     
+    export let value = ''
 </script>
 
-<textarea name={name} placeholder= {placeholder} required value={value} disabled/>
-
+<textarea
+    bind:value
+    {...$$restProps}
+    on:input
+    on:change
+    on:blur
+    on:focus
+    on:keydown
+    on:keyup
+    on:keypress
+    on:click
+/>
 
 <style>
     

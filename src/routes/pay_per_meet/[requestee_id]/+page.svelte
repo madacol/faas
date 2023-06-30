@@ -31,7 +31,7 @@
             If {name} also pays to meet you, is because {name} is genuinely interested.
         </p>
         <p>
-            Don't worry, if {name}doesn't make the payment in 24 hours, we'll
+            Don't worry, if {name} doesn't make the payment in 24 hours, we'll
             refund you.
         </p>
         <p />

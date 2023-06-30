@@ -3,6 +3,7 @@ import { sql } from "../../lib/server/db";
 import { argon_options, cookies_options } from "$lib/server/config";
 import { redirect } from "@sveltejs/kit";
 import { fail } from "@sveltejs/kit";
+import { PASSWORD_MINLENGTH } from "$lib/config";
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -19,7 +20,7 @@ export const actions = {
             return fail(422, {error: "Password must be a string"})
         }
 
-        if (password.length < 8) {
+        if (password.length < PASSWORD_MINLENGTH) {
             return fail(422, {error: "Password must be at least 8 characters long"})
         }
 
