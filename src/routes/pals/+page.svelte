@@ -6,7 +6,9 @@
     {#each data.pals as pal}
         <article class="user">
             <!-- <p class="score">score 7.8/10</p> -->
-            <p class="age">Age {pal.birthday} | {pal.gender}</p>
+            <p class="name">{pal.name} {pal.lastname}</p>
+            <p class="age">Age {pal.birthday}</p>
+            <p class="gender">{pal.gender}</p>
             <!-- svelte-ignore a11y-img-redundant-alt -->
             <img src={pal.image_data_url ?? '/no_profile.png'} alt="Profile Picture" />
             <div class="bio">
@@ -43,16 +45,15 @@
     .user img {
         border-radius: 50%;
         margin: auto;
-        grid-row: 1 / 3;
         width: 8em;
         aspect-ratio: 1/1;
     }
-    .age,
     .bio {
         grid-column: 2 / 4;
-    }
-    .bio {
         min-height: 8em;
+    }
+    .bio p {
+        padding: 0.7em;
     }
 
     button {
