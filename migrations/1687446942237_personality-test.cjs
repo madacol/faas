@@ -9,8 +9,8 @@ exports.up = pgm => {
         CREATE TABLE personality_answers (
             personality_answer_id SERIAL PRIMARY KEY,
             answer INTEGER NOT NULL CHECK (answer >= 1 AND answer <= 5),
-            personality_question_id INTEGER NOT NULL REFERENCES personality_questions(personality_question_id),
-            user_id INTEGER NOT NULL REFERENCES users(user_id),
+            personality_question_id INTEGER NOT NULL REFERENCES personality_questions(personality_question_id) ON DELETE CASCADE,
+            user_id INTEGER NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             UNIQUE (personality_question_id, user_id)
         );
