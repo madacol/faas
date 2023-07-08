@@ -1,7 +1,6 @@
 import { sql } from "$lib/server/db";
 
 
-/** @type {import('@sveltejs/kit').Load} */
 export async function load({ locals, params }) {
     const user_id = locals.user.user_id;
     const {rows: [user]} = await sql`
@@ -20,7 +19,6 @@ export async function load({ locals, params }) {
             GROUP BY user_id
             ;
     `;
-    console.log(user);
     return { user };
 }
 

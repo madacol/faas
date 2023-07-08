@@ -17,8 +17,6 @@ export async function load() {
         LIMIT 10
         ;
     `
-console.log(pals);
-
     return {
         pals
     }

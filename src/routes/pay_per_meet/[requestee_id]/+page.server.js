@@ -15,7 +15,6 @@ export async function load({ locals, params }) {
             WHERE user_id=${params.requestee_id}
             ;
     `;
-    console.log(user);
     return { user };
 }
 
