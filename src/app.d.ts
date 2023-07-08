@@ -8,6 +8,7 @@ declare global {
 		interface UserInfo {
 			user_id: number;
 			name: string;
+			lastname: string;
 			email: string;
 			expired: Date;
 			roles: number[];
