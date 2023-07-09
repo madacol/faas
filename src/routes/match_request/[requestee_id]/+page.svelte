@@ -24,19 +24,14 @@
         </p>
         <br />
         <p>
+            {name} is genuinely interested and already payed to meet you.
+        </p>
+        <p>
             To proceed with meeting {name}, a payment of 4.99 CAD is required.
-        </p>
-        <p>
-            If {name} also pays to meet you, is because {name} is genuinely interested.
-        </p>
-        <p>
-            Don't worry, if {name} doesn't make the payment in 24 hours, we'll
-            refund you.
         </p>
         <p />
         <PrimaryButton type="submit" disabled>Pay</PrimaryButton>
     </form>
-    <LinkButton href="/pals">Keep Searching</LinkButton>
 </main>
 
 <style>
