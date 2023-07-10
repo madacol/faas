@@ -93,11 +93,14 @@ export async function handle({ event, resolve }) {
 
     const method = event.request.method;
     const path = event.url.pathname;
-    const user_session = event.locals.user;
     const params = Object.fromEntries(event.url.searchParams);
     const headers = Object.fromEntries(event.request.headers);
 
-    const {rows: [{log_id}]} = await sql`
+    let image_data_url;
+    let user_session;
+    if (user) ({image_data_url, ...user_session} = user);
+
+    const logPromise = sql`
         INSERT INTO logs (
             path,
             method,
@@ -121,6 +124,8 @@ export async function handle({ event, resolve }) {
     const response = await resolve(event);
 
     /*********************/
+
+    const {rows: [{log_id}]} = await logPromise;
 
     if (response.status >= 500) {
         const body = await request_clone.text();
