@@ -24,8 +24,12 @@ const publicRoutes = [
 export async function handle({ event, resolve }) {
     const session_id = event.cookies.get('session');
     const isPathProtected = !publicRoutes.includes(event.url.pathname);
-    if (!session_id && isPathProtected) {
-        return redirect(`/login?redirectTo=${event.url.pathname}`, 'Not authenticated user.');
+
+    if (!session_id) {
+        if (isPathProtected) {
+            return redirect(`/login?redirectTo=${event.url.pathname}`, 'Not authenticated user.');
+        }
+        return await resolve(event);
     }
 
     const {rows: [user]} = await sql`
