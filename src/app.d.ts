@@ -13,6 +13,7 @@ declare global {
 			expired: Date;
 			roles: number[];
 			permissions: string[];
+			image_data_url: string;
 		}
 		// interface Error {}
 		// interface Locals {}
