@@ -1,4 +1,5 @@
 import { sql } from "$lib/server/db";
+import { redirect } from "@sveltejs/kit";
 
 export async function load() {
 
@@ -25,7 +26,7 @@ export async function load() {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    meet: async ({ locals, request }) => {
+    default: async ({ locals, request }) => {
 
         const data = await request.formData();
         const pal_id = Number(data.get("pal_id"));
@@ -34,10 +35,13 @@ export const actions = {
             throw new Error("Invalid pal_id provided");
         }
 
-        await sql`
+        const {rows: [palRequest]} = await sql`
             INSERT INTO pal_requests (requester_id, requestee_id)
             VALUES (${locals.user.user_id}, ${pal_id})
+            RETURNING pal_request_id
             ;
         `;
+
+        throw redirect(303, `/pay_per_meet/${palRequest.pal_request_id}`);
     },
 }

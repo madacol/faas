@@ -14,16 +14,17 @@ function redirect(location, body) {
 }
 
 const publicRoutes = [
-    '/',
-    '/login',
-    '/signup',
+    /\/$/,
+    /\/login\/?$/,
+    /\/signup\/?$/,
+    /^\/pay_per_meet\/[\w-]+\/[\w-]+\/(success|cancel)\/?$/,
 ];
 
 
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
     const session_id = event.cookies.get('session');
-    const isPathProtected = !publicRoutes.includes(event.url.pathname);
+    const isPathProtected = !publicRoutes.some(regex => regex.test(event.url.pathname));
 
     if (!session_id) {
         if (isPathProtected) {

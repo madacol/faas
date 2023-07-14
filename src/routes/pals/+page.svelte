@@ -15,9 +15,10 @@
                 <p>{pal.bio}</p>
             </div>
             <div class="actions">
-                <a href="/pay_per_meet/{pal.user_id}">
+                <form method="post">
+                    <input type="hidden" name="pal_id" value={pal.user_id} />
                     <button>Meet!</button>
-                </a>
+                </form>
             </div>
         </article>
     {/each}

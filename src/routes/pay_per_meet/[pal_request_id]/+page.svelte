@@ -34,7 +34,7 @@
             refund you.
         </p>
         <p />
-        <PrimaryButton type="submit" disabled>Pay</PrimaryButton>
+        <PrimaryButton type="submit">Pay</PrimaryButton>
     </form>
     <LinkButton href="/pals">Keep Searching</LinkButton>
 </main>
