@@ -14,7 +14,7 @@
     <img src="/logo.png" alt="logo" style="padding-top: 40px;"/>
     <h2>Welcome back!</h2>
     <img src="/login_image_decor.png" alt="image_decor" />
-    <form method="post" use:enhance>
+    <form method="post">
         <Input
             name="email"
             type="email"
