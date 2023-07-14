@@ -4,7 +4,7 @@ export const database = {
   common: {
     connectionString: DATABASE_URL,
     query_timeout: 30000,
-    connectionTimeoutMillis: 5000,
+    connectionTimeoutMillis: 20000,
   },
   get pool(){return {
     ...this.common,
