@@ -10,6 +10,9 @@ dependencies:
   node-pg-migrate:
     specifier: ^6.2.2
     version: 6.2.2(pg@8.11.0)
+  nodemailer:
+    specifier: ^6.9.3
+    version: 6.9.3
   npm-run-all:
     specifier: ^4.1.5
     version: 4.1.5
@@ -1378,6 +1381,11 @@ packages:
       mkdirp: 1.0.4
       pg: 8.11.0
       yargs: 17.3.1
+    dev: false
+
+  /nodemailer@6.9.3:
+    resolution: {integrity: sha512-fy9v3NgTzBngrMFkDsKEj0r02U7jm6XfC3b52eoNV+GCrGj+s8pt5OqhiJdWKuw51zCTdiNR/IUD1z33LIIGpg==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /nopt@5.0.0:
