@@ -18,11 +18,11 @@ export async function payToMeet(success_url, cancel_url) {
         line_items: [
             {
                 price_data: {
-                    currency: 'usd',
+                    currency: 'cad',
                     product_data: {
-                        name: 'meet',
+                        name: 'friendpal meet',
                     },
-                    unit_amount: 499,
+                    unit_amount: 599,
                 },
                 quantity: 1,
             },
