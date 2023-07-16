@@ -1,11 +1,10 @@
 <script>
-    import { goto } from "$app/navigation"
     import { onMount } from "svelte"
 
     onMount(() => {
         setTimeout(() => {
-            goto('/');
-        }, 2000);
+            window.location.href = '/';
+        }, 3000);
     })
 </script>
 
