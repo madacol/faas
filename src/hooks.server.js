@@ -17,7 +17,7 @@ const publicRoutes = [
     /\/$/,
     /\/login\/?$/,
     /\/signup\/?$/,
-    /^\/pay_per_meet\/[\w-]+\/[\w-]+\/(success|cancel)\/?$/,
+    /^\/pal_request\/[\w-]+\/[\w-]+\/(success|cancel)\/?$/,
 ];
 
 

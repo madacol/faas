@@ -42,6 +42,6 @@ export const actions = {
             ;
         `;
 
-        throw redirect(303, `/pay_per_meet/${palRequest.pal_request_id}`);
+        throw redirect(303, `/pal_request/${palRequest.pal_request_id}`);
     },
 }

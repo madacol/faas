@@ -1,10 +1,9 @@
 <script>
     import LinkButton from '$lib/components/LinkButton.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
-    import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
-    let { name, lastname, email, gender, birthday, bio, pal_requests_count, image_data_url } =
+    let { name, lastname, email, gender, birthday, bio, image_data_url } =
         data.user
 </script>
 
@@ -24,7 +23,7 @@
         </p>
         <br />
         <p>
-            To proceed with meeting {name}, a payment of 4.99 CAD is required.
+            To proceed with meeting {name}, a payment of 5.99 CAD is required.
         </p>
         <p>
             If {name} also pays to meet you, is because {name} is genuinely interested.

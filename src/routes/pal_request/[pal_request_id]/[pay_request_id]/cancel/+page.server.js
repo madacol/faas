@@ -2,13 +2,11 @@ import { sql } from "$lib/server/db";
 
 export async function load({ params }) {
     const {rows: [user]} = await sql`
-        UPDATE pay_pal_requests
+        UPDATE pay_requests
         SET status = 'cancelled'
-        WHERE pay_pal_request_id = ${params.pay_pal_request_id}
-        RETURNING pay_pal_request_id
+        WHERE pay_request_id = ${params.pay_request_id}
+            AND status = 'pending'
+        RETURNING pay_request_id
         ;
     `;
-    return { user };
-
-    
 }
