@@ -27,8 +27,7 @@ export function sendMail(to, subject, text) {
 
         mailTransporter.sendMail(mailDetails, function(err, data) {
             if(err) {
-                console.log({err, data});
-                return reject(err);
+                return console.log({err, data});
             }
             console.log('Email sent successfully', data);
             return resolve(data);
