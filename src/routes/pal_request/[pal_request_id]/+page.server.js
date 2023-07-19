@@ -5,20 +5,12 @@ import { redirect } from "@sveltejs/kit";
 
 export async function load({ locals, params }) {
 
-    const {rows: users} = await sql`
+    const {rows: pay_requests} = await sql`
         SELECT
-            name,
-            lastname,
-            email,
-            gender,
-            to_char(birthday,'YYYY-MM-DD') as birthday,
-            bio,
             pay_requests.status,
-            image_data_url
+            requestee_id,
+            requester_id
             FROM pal_requests
-            JOIN users
-                ON (requester_id = user_id)
-                OR (requestee_id = user_id)
             LEFT JOIN pay_requests USING (pal_request_id)
             WHERE (pal_request_id=${params.pal_request_id})
                 AND (pay_requests.status = 'paid' OR pay_requests.status IS NULL)
@@ -26,21 +18,44 @@ export async function load({ locals, params }) {
     `;
 
     let paidCount = 0;
-    users.forEach(user => {
+    pay_requests.forEach(user => {
         if (user.status === 'paid') paidCount++;
     });
 
     let user;
     switch (paidCount) {
         case 0:
-            user = users.find(user => user.requestee_id === user.user_id);
+            ({rows: [user]} = await sql`
+                SELECT
+                    name,
+                    lastname,
+                    email,
+                    gender,
+                    to_char(birthday,'YYYY-MM-DD') as birthday,
+                    bio,
+                    image_data_url
+                FROM users
+                WHERE user_id = ${pay_requests[0].requestee_id}
+                ;`
+            )
             break;
         case 1:
-            user = users.find(user => user.requester_id === user.user_id);
+            ({rows: [user]} = await sql`
+                SELECT
+                    name,
+                    lastname,
+                    email,
+                    gender,
+                    to_char(birthday,'YYYY-MM-DD') as birthday,
+                    bio,
+                    image_data_url
+                FROM users
+                WHERE user_id = ${pay_requests[0].requester_id}
+                ;`
+            )
             break;
         case 2:
-            throw error(400, `Already Pals!`
-            );
+            throw error(400, `Already Pals!`);
         default:
             throw error(500, `Something went wrong`);
     }
