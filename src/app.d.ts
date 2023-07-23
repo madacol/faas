@@ -11,6 +11,7 @@ declare global {
 			lastname: string;
 			email: string;
 			expired: Date;
+			is_verified: boolean;
 			roles: number[];
 			permissions: string[];
 			image_data_url: string;

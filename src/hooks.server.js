@@ -14,10 +14,12 @@ function redirect(location, body) {
 }
 
 const publicRoutes = [
-    /\/$/,
-    /\/login\/?$/,
-    /\/signup\/?$/,
+    /^\/$/,
+    /^\/login\/?$/,
+    /^\/signup\/?$/,
     /^\/pal_request\/[\w-]+\/[\w-]+\/(success|cancel)\/?$/,
+    /^\/create-verification-session\/?$/,
+    /^\/webhook\/?$/,
 ];
 
 
@@ -39,6 +41,7 @@ export async function handle({ event, resolve }) {
             users.name,
             users.email,
             users.image_data_url,
+            users.is_verified,
             sessions.expires_at < NOW() AS expired,
             ARRAY_REMOVE(ARRAY_AGG(role_id), NULL) AS roles,
             array_merge_agg(permissions) AS permissions

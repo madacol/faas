@@ -26,6 +26,7 @@
 		"vitest": "^0.25.3"
 	},
 	"dependencies": {
+		"@stripe/stripe-js": "^1.54.1",
 		"argon2": "^0.30.3",
 		"dotenv": "^16.1.0",
 		"node-pg-migrate": "^6.2.2",

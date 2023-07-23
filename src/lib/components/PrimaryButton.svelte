@@ -6,7 +6,25 @@
       export let disabled = false
 </script>
 
-<button {type} {disabled}>
+<button
+    {type}
+    {disabled}
+    {...$$restProps}
+    on:input
+    on:change
+    on:blur
+    on:focus
+    on:mousedown
+    on:mouseup
+    on:mouseenter
+    on:mouseleave
+    on:mouseover
+    on:mouseout
+    on:keydown
+    on:keyup
+    on:keypress
+    on:click
+>
     <slot />
 </button>
 
