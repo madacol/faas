@@ -1,8 +1,4 @@
 <script>
-    import LinkButton from '$lib/components/LinkButton.svelte'
-    import PrimaryButton from '$lib/components/PrimaryButton.svelte'
-    import TextArea from '$lib/components/TextArea.svelte'
-
     export let data
     let { user_id, name, lastname, email, gender, birthday, bio, image_data_url } =
         data.user
@@ -19,8 +15,7 @@
         <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: {gender}</p>
      
 
-        <TextArea disabled name="bio" placeholder="User Bio" required value={bio} />
-        <LinkButton href="/its_a_match/{user_id}">Go back</LinkButton>
+        <p class="bio">{bio}</p>
     </form>
 </main>
 
@@ -48,6 +43,12 @@
         margin: 0;
         padding: 0;
         font-size: small;
+    }
+    .bio {
+        font-size: small;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: #ffffff;
     }
     img {
         display: block;

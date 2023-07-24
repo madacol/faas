@@ -14,12 +14,11 @@
             <div class="bio">
                 <p>{pal.bio}</p>
             </div>
-            <div class="actions">
-                <form method="post">
-                    <input type="hidden" name="pal_id" value={pal.user_id} />
-                    <button>Meet!</button>
-                </form>
-            </div>
+            <a href={`/pal_profile/${pal.user_id}`} class="profile">View profile!</a>
+            <form class="meet" method="post">
+                <input type="hidden" name="pal_id" value={pal.user_id} />
+                <button>Meet!</button>
+            </form>
         </article>
     {/each}
 </main>
@@ -57,7 +56,7 @@
         padding: 0.7em;
     }
 
-    button {
+    button, a {
         width: 100%;
         background-color: #3d74a6;
         border: none;
@@ -69,6 +68,8 @@
         padding: 0.5em;
         cursor: pointer;
         border-radius: 1em;
+        font-family: inherit;
+        font-weight: bolder;
     }
 
     p {
@@ -79,7 +80,7 @@
         box-sizing: border-box;
         margin: 0;
     }
-    .actions {
+    .meet {
         grid-row: 3;
         grid-column: 3;
     }
