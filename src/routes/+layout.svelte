@@ -3,6 +3,9 @@
   export let data;
 
   let menu_open = false;
+  $: isLogged = !!data.user;
+
+  $: isAdmin = data.user?.permissions?.includes('read_users');
 </script>
 
 <header>
@@ -10,11 +13,12 @@
     <div class="logo">
       <a href="/" aria-label="logo" />
     </div>
-    <div class="links">
-      <a href="/pending_users">Pending Users</a>
-      <a href="/pals">Show Pals</a>
-      <a href="/personality_test">form</a>
-    </div>
+    {#if isAdmin}
+      <div class="links">
+        <a href="/pending_users">Pending Users</a>
+        <a href="/personality_test">Personality Test</a>
+      </div>
+    {/if}
   </div>
   <nav>
     {#if data.user}
