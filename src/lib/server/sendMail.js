@@ -3,7 +3,7 @@ import { createTransport } from "nodemailer";
 
 /**
  * Send mail to user
- * @param {string} to - the email to send to
+ * @param {string | string[]} to - an email or list of emails to send to
  * @param {string} subject 
  * @param {string} text 
  */
@@ -18,6 +18,7 @@ export function sendMail(to, subject, text) {
             }
         });
 
+        /** @type {import("nodemailer/lib/mailer").Options} */
         let mailDetails = {
             from: 'notification@friendpals.ca',
             to,
