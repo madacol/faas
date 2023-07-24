@@ -50,6 +50,12 @@ export async function load({ params, url }) {
         case 1: // requester just paid
             const meet_url = `${url.origin}/pal_request/${params.pal_request_id}`;
             sendMail(
+                requester.email,
+                `You just paid to meet ${requestee.name}!`,
+                `Hey ${requester.name}!\n\n`
+                    + `You just paid 5.99 CAD to meet ${requestee.name}, the potential friend you're eager to meet on Friendpals.`
+            );
+            sendMail(
                 requestee.email,
                 `${requester.name} ${requester.lastname} wants to meet you!`,
                 `If you are interested follow this link: ${meet_url}.`
