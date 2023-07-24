@@ -20,8 +20,7 @@
 
 <main>
     <div>
-        <p>In order to continue,</p>
-        <p>we need to verify your identity</p>
+        <h2>We need to verify your identity</h2>
     </div>
     <PrimaryButton
         disabled={!stripe}
