@@ -16,6 +16,11 @@ export const actions = {
         const birthday = data.get("birthday");
         const gender = data.get("gender");
 
+        // validate email
+        if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return fail(422, {error: "Invalid email address"})
+        }
+
         if (typeof password !== "string") {
             return fail(422, {error: "Password must be a string"})
         }
