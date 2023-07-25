@@ -15,7 +15,8 @@ export async function load() {
             , gender
             , image_data_url
         FROM users
-        LIMIT 10
+        ORDER BY (NOT is_verified), random()
+        LIMIT 50
         ;
     `
     return {
