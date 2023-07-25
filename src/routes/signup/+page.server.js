@@ -4,6 +4,7 @@ import { argon_options, cookies_options } from "$lib/server/config";
 import { redirect } from "@sveltejs/kit";
 import { fail } from "@sveltejs/kit";
 import { PASSWORD_MINLENGTH } from "$lib/config";
+import { sendMail } from "$lib/server/sendMail";
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -20,6 +21,7 @@ export const actions = {
         if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return fail(422, {error: "Invalid email address"})
         }
+
 
         if (typeof password !== "string") {
             return fail(422, {error: "Password must be a string"})
@@ -70,6 +72,29 @@ export const actions = {
         `
 
         cookies.set("session", session.session_id, cookies_options);
+
+        /**
+         * Subject: Welcome to Friendpals!
+         * 
+         * Dear User,
+         * 
+         * A heartfelt thank you for registering! I am excited to welcome you at Friendpals, where we'll create unforgettable friendships together. To foster even more meaningful connections, I invite you to add some details and a friendly photo to your profile. This simple gesture can help us understand each other better and spark wonderful conversations. I can't wait to see you there!
+         * 
+         * Warm regards,
+         * 
+         * Ricardo Calleja
+         * Friendpals Team
+         */
+        sendMail(
+            email.toString(),
+            "Welcome to Friendpals!",
+            `Dear ${name}\n\n`
+                + "A heartfelt thank you for registering! I am excited to welcome you at Friendpals, where we'll create unforgettable friendships together.\n\n"
+                + `To foster even more meaningful connections, I invite you to add some details and a friendly photo to your profile by going into this link: ${url.href + "profile"}. This simple gesture can help us understand each other better and spark wonderful conversations. I can't wait to see you there!\n\n`
+                + "Warm regards,\n\n"
+                + "Ricardo Calleja\n"
+                + "Friendpals Team"
+        );
 
         throw redirect(303, url.searchParams.get('redirectTo') ?? '/');
     },
