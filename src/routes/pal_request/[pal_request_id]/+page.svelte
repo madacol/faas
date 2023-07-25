@@ -9,7 +9,7 @@
 
 <main>
     <img
-        src={image_data_url}
+        src={image_data_url || "/no_profile.png"}
         alt="logo"
     />
 

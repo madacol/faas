@@ -5,7 +5,7 @@
 </script>
 
 <main style="display: flex; flex-direction: column">
-    <img src={image_data_url} alt="profile_picture" />
+    <img src={image_data_url || "/no_profile.png"} alt="profile_picture" />
 
 
     <form method="post">

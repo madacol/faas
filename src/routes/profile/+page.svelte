@@ -44,7 +44,7 @@
     <form method="post">
         <label class="profile-picture">
             <img
-                src={image_data_url ?? '/no_profile.png'}
+                src={image_data_url || '/no_profile.png'}
                 alt="Profile"
             >
             <input type="file" hidden accept="image/*" on:change={handleFileSelect} />

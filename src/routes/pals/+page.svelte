@@ -10,7 +10,7 @@
             <p class="age">Age {pal.birthday}</p>
             <p class="gender">{pal.gender}</p>
             <!-- svelte-ignore a11y-img-redundant-alt -->
-            <img src={pal.image_data_url ?? '/no_profile.png'} alt="Profile Picture" />
+            <img src={pal.image_data_url || '/no_profile.png'} alt="Profile Picture" />
             <div class="bio">
                 <p>{pal.bio}</p>
             </div>
