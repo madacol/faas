@@ -72,7 +72,7 @@ export async function load({ params, url }) {
                 requester.email,
                 `${requestee.name} knows you're interested on Friendpals!`,
                 `Hey ${requester.name},\n\n`
-                    + `We've notified ${requestee.name} that you're interested in meeting her on Friendpals. They're aware and has until ${in_7_days} to make the payment of 5.99 CAD. In case ${requestee.name} doesn't make the payment within the specified timeframe, we'll refund your money. Stay positive, and let's see what happens!\n\n`
+                    + `We've notified ${requestee.name} that you're interested in meeting them on Friendpals. ${requestee.name} is aware and has until ${in_7_days} to make the payment of 5.99 CAD. In case ${requestee.name} doesn't make the payment within the specified timeframe, we'll refund your money. Stay positive, and let's see what happens!\n\n`
                     + `Fingers crossed for a potential friendship!\n\n`
                     + `Warm regards,\n`
                     + `The Friendpals Team`
@@ -92,8 +92,8 @@ export async function load({ params, url }) {
                 requestee.email,
                 `${requester.name} is excited to meet you on Friendpals!`,
                 `Hey ${requestee.name}!\n\n`
-                    + `Big news! ${requester.name}, your potential friend on Friendpals, paid 5.99 CAD to meet you. They're genuinely interested in getting to know you better.\n\n`
-                    + `To meet them, go into this link ${meet_url} , and kindly make a payment of 5.99 CAD too.\n\n`
+                    + `Big news! ${requester.name}, your potential friend on Friendpals, paid 5.99 CAD to meet you. ${requester.name} is genuinely interested in getting to know you better.\n\n`
+                    + `To meet ${requester.name}, go into this link ${meet_url} , and kindly make a payment of 5.99 CAD too.\n\n`
                     + `Once your payment is made, we'll share to you ${requester.name}'s contact info. You have until ${in_7_days} to make the payment. Let's make this friendship happen!\n\n`
                     + `Cheers,\n`
                     + `The Friendpals Team`
@@ -126,7 +126,7 @@ export async function load({ params, url }) {
                 requester.email,
                 `${requestee.name} can't wait to meet you too!`,
                 `Hey ${requester.name}!\n\n`
-                    + `Fantastic news! ${requestee.name}, the potential friend you're eager to meet on Friendpals, has also paid 5.99 CAD to meet you. It's official – they're just as excited as you are!`
+                    + `Fantastic news! ${requestee.name}, the potential friend you're eager to meet on Friendpals, has also paid 5.99 CAD to meet you. It's official – ${requestee.name} is just as excited as you are!`
                     + `Here's ${requestee.name}'s contact info:\n\n`
                     + `Full name: ${requestee.name} ${requestee.lastname}\n`
                     + `Email: ${requestee.email}\n\n`
