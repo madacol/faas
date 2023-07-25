@@ -1,19 +1,21 @@
 <script>
-    import { onMount } from "svelte"
-
-    onMount(() => {
-        setTimeout(() => {
-            window.location.href = '/';
-        }, 3000);
-    })
+    import LinkButton from "$lib/components/LinkButton.svelte"
 </script>
 
 <main>
-    Paid successfully!
+    <h1>
+        Paid successfully!
+    </h1>
+
+    <LinkButton href="/pals">Keep Searching</LinkButton>
 </main>
 
 <style>
     main {
-        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2em;
+        height: 100%;
     }
 </style>
