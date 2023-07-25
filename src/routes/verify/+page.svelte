@@ -16,35 +16,45 @@
     onMount(async () => {
         stripe = await stripePromise;
     })
+
+    let verificationSubmitted = false;
 </script>
 
 <main>
-    <div>
-        <h2>We need to verify your identity</h2>
-    </div>
-    <PrimaryButton
-        disabled={!stripe}
-        on:click={ async function() {
-            if (!stripe) return;
 
-            // Get the VerificationSession client secret using the server-side
-            const response = await fetch('/verify', {method: 'POST'})
-            const client_secret = await response.json();
+    {#if !verificationSubmitted}
+        <div><h2>We need to verify your identity</h2></div>
+        <PrimaryButton
+            disabled={!stripe}
+            on:click={ async function() {
+                if (!stripe) return;
 
-            // Show the verification modal.
-            const { error } = await stripe.verifyIdentity(client_secret);
+                // Get the VerificationSession client secret using the server-side
+                const response = await fetch('/verify', {method: 'POST'})
+                const client_secret = await response.json();
 
-            if (error) {
-                console.error({error});
-            } else {
-                setTimeout(() => {
-                    goto('/')
-                }, 2000)
-            }
-        }}
-    >
-        Verify
-    </PrimaryButton>
+                // Show the verification modal.
+                const { error } = await stripe.verifyIdentity(client_secret);
+
+                if (error) {
+                    console.error({error});
+                } else {
+                    verificationSubmitted = true;
+                }
+            }}
+        >
+            Verify
+        </PrimaryButton>
+    {:else}
+        <h1>Verification submitted!</h1>
+        <p>Thank you for submitting your verification. We will send you an email once your verification is complete.</p>
+
+        <p>In the meantime, we invite you to go to your <a href="/profile">Profile Page</a> and add some details and a friendly photo to your profile. This simple gesture can help us understand each other better and spark wonderful conversations.</p>
+
+        <PrimaryButton on:click={() => goto('/pals')}>
+            Find your first pal!
+        </PrimaryButton>
+    {/if}
 </main>
 
 <style>
