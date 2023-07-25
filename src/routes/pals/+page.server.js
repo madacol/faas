@@ -14,6 +14,7 @@ export async function load() {
             , EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthday)) as birthday
             , gender
             , image_data_url
+            , is_verified
         FROM users
         ORDER BY (NOT is_verified), random()
         LIMIT 50

@@ -10,7 +10,9 @@
             <p class="age">Age {pal.birthday}</p>
             <p class="gender">{pal.gender}</p>
             <!-- svelte-ignore a11y-img-redundant-alt -->
-            <img src={pal.image_data_url || '/no_profile.png'} alt="Profile Picture" />
+            <div class:verified={pal.is_verified} title={pal.is_verified ? 'Verified' : ''}>
+                <img src={pal.image_data_url || '/no_profile.png'} alt="Profile Picture" />
+            </div>
             <div class="bio">
                 <p>{pal.bio}</p>
             </div>
@@ -43,10 +45,23 @@
         box-sizing: border-box;
     }
     .user img {
+        position: relative;
         border-radius: 50%;
         margin: auto;
         width: 8em;
         aspect-ratio: 1/1;
+    }
+    .user .verified {
+        position: relative;
+    }
+    .user .verified::after {
+        content: '✅';
+        display: block;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-size: 1.5em;
+        color: #3d74a6;
     }
     .bio {
         grid-column: 2 / 4;
