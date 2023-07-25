@@ -1,4 +1,5 @@
 <script>
+    import { goto } from '$app/navigation'
     import LinkButton from '$lib/components/LinkButton.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
     import TextArea from '$lib/components/TextArea.svelte'
@@ -65,8 +66,12 @@
 
         <TextArea name="bio" placeholder="User Bio" value={bio} />
 
-        <PrimaryButton type="submit">Update</PrimaryButton>
-        <!-- <LinkButton href="/">View invitations to meet</LinkButton> -->
+        <PrimaryButton
+            type="submit"
+        >
+            Update
+        </PrimaryButton>
+        <LinkButton href="/">Keep Searching</LinkButton>
     </form>
 </main>
 
@@ -96,6 +101,7 @@
         display: block;
         width: 8em;
         aspect-ratio: 1/1;
+        border-radius: 50%;
     }
     p {
         margin: 0;
@@ -104,8 +110,6 @@
     }
     .profile-picture {
         cursor: pointer;
-        border-radius: 50%;
-        overflow: hidden;
         align-self:center;
     }
 </style>
