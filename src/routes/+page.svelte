@@ -8,7 +8,7 @@
     <div style="max-width: 300px; ">
         <div style="display: flex;">
             <h5>
-                Step 1 is to sign up either in person or virtually <a
+                Step 1 is to sign up <a
                     href="/signup">here</a
                 >
             </h5>
@@ -17,8 +17,8 @@
         <div style="display: flex;">
             <img src="/image_2_intro.png" alt="image_2_intro.png" />
             <h5>
-                Step 2 : After a short Q&A with us, We make sure people are who
-                they say they are
+                Step 2 : ID Validation. We make sure people are who
+                they say they are!
             </h5>
         </div>
 
