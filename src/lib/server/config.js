@@ -17,7 +17,7 @@ export const database = {
 export const cookies_options = {
   maxAge: 2592000, // 30 days
   httpOnly: true,
-  sameSite: true, // Strict
+  sameSite: 'lax', // TODO: Maybe change again to "true" (Strict) after fixing detecting payment through webhooks
   secure: NODE_ENV === 'production',
   domain: DOMAIN,
   path: '/',
