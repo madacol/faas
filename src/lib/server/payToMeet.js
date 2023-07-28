@@ -22,6 +22,9 @@ export async function payToMeet(success_url, cancel_url) {
             },
         ],
         mode: 'payment',
+        payment_intent_data: {
+          capture_method: 'manual',
+        },
         success_url,
         cancel_url,
     }); 
