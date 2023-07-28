@@ -6,26 +6,27 @@
 </script>
 
 <a {href} {...$$restProps}>
-    <slot />
+    <button>
+        <slot />
+    </button>
 </a>
 
 <style>
-    a {
-        display: block;
+    button {
         text-decoration: none;
-        background-color: #3d74a6;
+        background-color: #EBF7FF;
         width: 100%;
         padding: 1.2rem;
         border: 0;
         cursor: pointer;
-        color: #fff;
+        color: #05517E;
         text-align: center;
         font-size: 1rem;
         font-weight: bold;
         border-radius: 2rem;
     }
-    a:hover {
-        background-color: #3d74a6;
+    button:hover {
+        background-color: #EBF7FF;
         opacity: 0.8;
     }
 </style>

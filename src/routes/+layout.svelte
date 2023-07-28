@@ -64,14 +64,19 @@
     :global(body) {
       margin: 0;
       padding: 0;
-      font-family: 'Poppins', sans-serif;
-      font-weight: bold;
+      font-family: DM Sans , sans-serif;
       font-size: calc(10px + 1vmin);
       display: flex;
       flex-direction: column;
       height: 100vh;
       min-height: 400px;
       align-items: stretch;
+    }
+
+    :global(.box) {
+        background-color: white;
+        border-radius: 2rem;
+        box-shadow: 0 0.5rem 1.5rem 0 rgba(6, 81, 126, 0.18);
     }
    
     header {
@@ -174,7 +179,7 @@
       overflow: auto;
       flex-grow: 1;
       text-align: center;
-      background: #EEE;
+      background: #EBF7FF;
     }
 
     a {

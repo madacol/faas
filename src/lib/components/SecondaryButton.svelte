@@ -30,19 +30,19 @@
 
 <style>
     button {
-        background-color: #3d74a6;
+        background-color: #EBF7FF;
         width: 100%;
         padding: 1.2rem;
         border: 0;
         cursor: pointer;
-        color: #fff;
+        color: #05517E;
         text-align: center;
         font-size: 1rem;
         font-weight: bold;
         border-radius: 2rem;
     }
     button:hover {
-        background-color: #3d74a6;
+        background-color: #EBF7FF;
         opacity: 0.8;
     }
 </style>
