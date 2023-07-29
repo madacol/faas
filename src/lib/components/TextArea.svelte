@@ -19,12 +19,11 @@
     
     textarea {
         font-size: 0.8em;
-        height: 5em;
-        border-radius: 13px;
-        padding: 0.5em;
-        height: 150px;
-        resize: none;
-        margin-bottom: 5px;
+        border-radius: 2rem;
+        padding: 2rem;
+        min-height: 12rem;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 0.3rem 0.9rem 0 rgba(6, 81, 126, 0.18);
     }
 
     textarea:focus {

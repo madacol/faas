@@ -10,5 +10,6 @@
         align-items: stretch;
         margin: 0.5em 0;
         justify-content: center;
+        width: 100%;
     }
 </style>

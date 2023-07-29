@@ -11,7 +11,8 @@ export async function load({ locals }) {
             to_char(birthday,'YYYY-MM-DD') as birthday,
             bio,
             image_data_url,
-            COUNT(pal_requests.requestee_id) AS pal_requests_count
+            COUNT(pal_requests.requestee_id) AS pal_requests_count,
+            is_verified
         FROM users
         LEFT JOIN pal_requests ON pal_requests.requestee_id = users.user_id
         WHERE user_id=${user_id}

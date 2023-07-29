@@ -1,7 +1,11 @@
 <script>
-    import { goto } from '$app/navigation'
-    import LinkButton from '$lib/components/LinkButton.svelte'
+    import Features from '$lib/components/Features.svelte'
+    import FeaturesItem from '$lib/components/FeaturesItem.svelte'
+    import SecondaryLinkButton from '$lib/components/SecondaryLinkButton.svelte'
+    import Location from '$lib/components/Location.svelte'
+    import Name from '$lib/components/Name.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import ProfileImageEdit from '$lib/components/ProfileImageEdit.svelte'
     import TextArea from '$lib/components/TextArea.svelte'
 
     export let data
@@ -13,7 +17,8 @@
         birthday,
         bio,
         image_data_url,
-        pal_requests_count
+        pal_requests_count,
+        is_verified
     } = data.user
 
     /**
@@ -40,38 +45,30 @@
     }
 </script>
 
-<main>
+<main class="box">
 
     <form method="post">
-        <label class="profile-picture">
-            <img
-                src={image_data_url || '/no_profile.png'}
-                alt="Profile"
-            >
-            <input type="file" hidden accept="image/*" on:change={handleFileSelect} />
-            <input type="hidden" name="image_data_url" value={image_data_url} />
-        </label>
-        <span>{name + " " + lastname}</span>
 
-        <p><i class="fa fa-map-marker" aria-hidden="true" /> Windsor, Canada</p>
-        <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: {gender}</p>
-        <p>
-            <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on {birthday}
-        </p>
-        <p>
-            <i class="fa fa-comments-o" aria-hidden="true" /> Invitations to
-            meet:
-            {pal_requests_count}
-        </p>
+        <ProfileImageEdit on:change={handleFileSelect} src={image_data_url} />
+        <Name name={`${name} ${lastname}`} is_verified={is_verified} />
+        <Location />
+        <Features>
+            <FeaturesItem
+                value={birthday}
+                label="Birthday"
+            />
+            <FeaturesItem
+                value={gender}
+                label=Gender
+            />
+        </Features>
 
         <TextArea name="bio" placeholder="User Bio" value={bio} />
 
-        <PrimaryButton
-            type="submit"
-        >
-            Update
-        </PrimaryButton>
-        <LinkButton href="/">Keep Searching</LinkButton>
+        <div class="actions">
+            <SecondaryLinkButton href="/">Keep Searching</SecondaryLinkButton>
+            <PrimaryButton type="submit">Update</PrimaryButton>
+        </div>
     </form>
 </main>
 
@@ -81,35 +78,24 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-    }
-    span {
-        font-size: 1.5rem;
-        text-align: center;
+        max-width: 40rem;
+        margin: auto;
     }
     form {
         display: flex;
-        flex-grow: 1;
         flex-direction: column;
         align-items: stretch;
         gap: 1em;
-        padding: 2em;
-        text-align: start;
-        max-width: 50em;
-        align-self: center;
+        align-self: stretch;
     }
-    img {
-        display: block;
-        width: 8em;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-    }
-    p {
-        margin: 0;
-        padding: 0;
-        font-size: small;
-    }
-    .profile-picture {
-        cursor: pointer;
-        align-self:center;
+    .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-width: 70%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: stretch;
+        gap: 1em;
+        margin-top: 1rem;
     }
 </style>
