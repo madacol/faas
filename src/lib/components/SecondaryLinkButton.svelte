@@ -24,9 +24,9 @@
         font-size: 1rem;
         font-weight: bold;
         border-radius: 2rem;
+        box-shadow: 0 0.3rem 0.9rem 0 rgba(6, 81, 126, 0.18);
     }
     button:hover {
-        background-color: #EBF7FF;
-        opacity: 0.8;
+        background-color: #e1f4ff;
     }
 </style>

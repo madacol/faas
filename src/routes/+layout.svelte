@@ -77,8 +77,9 @@
         background-color: white;
         border-radius: 2rem;
         box-shadow: 0 0.5rem 1.5rem 0 rgba(6, 81, 126, 0.18);
+        padding: 1rem;
     }
-   
+
     header {
       background: #95b1ca;
       padding: 0 1em 0 0;

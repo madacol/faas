@@ -11,7 +11,7 @@ export async function load() {
             , lastname
             , bio
             -- calculate age
-            , EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthday)) as birthday
+            , EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthday)) as age
             , gender
             , image_data_url
             , is_verified

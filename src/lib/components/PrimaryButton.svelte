@@ -40,9 +40,9 @@
         font-size: 1rem;
         font-weight: bold;
         border-radius: 2rem;
+        box-shadow: 0 0.3rem 0.9rem 0 rgba(6, 81, 126, 0.18);
     }
     button:hover {
-        background-color: #3d74a6;
-        opacity: 0.8;
+        background-color: #1d5b96;
     }
 </style>
