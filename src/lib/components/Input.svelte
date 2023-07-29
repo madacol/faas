@@ -17,16 +17,13 @@
 
 <style>
     input {
-        width: 308px;
-        height: 50px;
+        height: 3.5rem;
         flex-shrink: 0;
         border-radius: 100px;
-        border: 0;
+        border: 1px solid #e5e5e5;
         background: #fcfcfc;
-
         color: rgba(0, 0, 0, 0.79);
         text-align: center;
-        font-size: 14px;
-        line-height: 171.5%;
+        font-size: 1rem;
     }
 </style>
