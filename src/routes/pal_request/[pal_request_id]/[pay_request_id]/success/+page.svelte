@@ -2,12 +2,14 @@
     import LinkButton from "$lib/components/LinkButton.svelte"
 </script>
 
-<main>
+<main class="box">
     <h1>
         Paid successfully!
     </h1>
 
-    <LinkButton href="/pals">Keep Searching</LinkButton>
+    <div>
+        <LinkButton href="/pals">Keep Searching</LinkButton>
+    </div>
 </main>
 
 <style>
@@ -16,6 +18,11 @@
         flex-direction: column;
         justify-content: center;
         gap: 2em;
-        height: 100%;
+        margin: 2rem auto;
+        max-width: 30rem;
+    }
+    div {
+        display: flex;
+        justify-content: center;
     }
 </style>
