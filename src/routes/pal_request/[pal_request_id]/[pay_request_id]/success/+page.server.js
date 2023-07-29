@@ -126,7 +126,8 @@ export async function load({ params, url }) {
                 requester.email,
                 `${requestee.name} can't wait to meet you too!`,
                 `Hey ${requester.name}!\n\n`
-                    + `Fantastic news! ${requestee.name}, the potential friend you're eager to meet on Friendpals, has also paid 5.99 CAD to meet you. It's official – ${requestee.name} is just as excited as you are!`
+                    + `Fantastic news! ${requestee.name}, the potential friend you're eager to meet on Friendpals, has also paid 5.99 CAD to meet you.\n`
+                    + `It's official – ${requestee.name} is just as excited as you are!\n\n`
                     + `Here's ${requestee.name}'s contact info:\n\n`
                     + `Full name: ${requestee.name} ${requestee.lastname}\n`
                     + `Email: ${requestee.email}\n\n`
