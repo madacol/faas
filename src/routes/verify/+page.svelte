@@ -20,9 +20,10 @@
     let verificationSubmitted = false;
 </script>
 
-<main>
+<main class="box">
 
     {#if !verificationSubmitted}
+        <img src="/verify.png" alt="An animated person verifying"/>
         <div><h2>We need to verify your identity</h2></div>
         <PrimaryButton
             disabled={!stripe}
@@ -55,16 +56,25 @@
             Find your first pal!
         </PrimaryButton>
     {/if}
+
 </main>
 
 <style>
     main {
         box-sizing: border-box;
         padding: 2em;
-        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         gap: 2em;
+        max-width: 30rem;
+        margin: 2rem auto;
+    }
+    img {
+        display: block;
+        aspect-ratio: 1/1;
+        width: 100%;
+        max-width: 20rem;
     }
 </style>
