@@ -11,7 +11,6 @@
 
 <style>
     a {
-        display: block;
         text-decoration: none;
         background-color: #3d74a6;
         width: 100%;
