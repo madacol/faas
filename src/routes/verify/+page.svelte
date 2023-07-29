@@ -69,7 +69,7 @@
         align-items: center;
         gap: 2em;
         max-width: 30rem;
-        margin: 2rem auto;
+        margin: auto;
     }
     img {
         display: block;

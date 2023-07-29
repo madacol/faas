@@ -18,7 +18,7 @@
         flex-direction: column;
         justify-content: center;
         gap: 2em;
-        margin: 2rem auto;
+        margin: auto;
         max-width: 30rem;
     }
     div {

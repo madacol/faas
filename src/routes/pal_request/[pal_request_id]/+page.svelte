@@ -41,7 +41,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 2rem auto;
+        margin: auto;
         max-width: 30rem;
         gap: 1rem;
     }

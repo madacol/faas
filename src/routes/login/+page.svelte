@@ -39,7 +39,7 @@
         justify-content: center;
         flex-direction: column;
         align-items: stretch;
-        margin: 2rem auto;
+        margin: auto;
         gap: 2rem;
         max-width: 25rem;
     }

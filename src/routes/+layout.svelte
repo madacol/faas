@@ -175,6 +175,7 @@
       flex-grow: 1;
       text-align: center;
       background: #EBF7FF;
+      padding: 2rem;
     }
 
     a {

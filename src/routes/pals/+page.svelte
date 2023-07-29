@@ -44,13 +44,13 @@
 
 <style>
     main {
-        margin: 2rem auto;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         gap: 2rem;
         text-align: center;
         max-width: 700px;
+        margin: auto;
     }
     .user {
         display: flex;
