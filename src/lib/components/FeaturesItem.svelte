@@ -13,8 +13,6 @@
     <sub>{label}</sub>
 </div>
 
-<span/>
-
 <style>
     .age {
         display: flex;
@@ -22,7 +20,6 @@
         justify-content: center;
         align-items: center;
         gap: 0.5em;
-        padding: 0 3rem;
     }
     h3 {
         margin: 0;
@@ -31,8 +28,7 @@
         font-size: small;
     }
 
-    span:not(:last-child) {
-        width: 1px;
-        background-color: black;
+    div:not(:first-child) {
+        border-left: 1px solid black;
     }
 </style>

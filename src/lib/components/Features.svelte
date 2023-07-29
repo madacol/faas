@@ -5,10 +5,10 @@
 
 <style>
     .features {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(6rem, 9rem));
         align-items: stretch;
         margin: 0.5em 0;
+        justify-content: center;
     }
 </style>
