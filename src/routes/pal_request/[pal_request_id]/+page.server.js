@@ -13,9 +13,16 @@ export async function load({ params }) {
             FROM pal_requests
             LEFT JOIN pay_requests USING (pal_request_id)
             WHERE (pal_request_id=${params.pal_request_id})
-                AND (pay_requests.status = 'paid' OR pay_requests.status IS NULL)
             ;
     `;
+
+    if (pay_requests.length === 0) {
+        throw error(404, `Pal Request not found`);
+    }
+
+    if (pay_requests[0].status === 'cancelled') {
+        throw error(400, `Pal Request was cancelled`);
+    }
 
     let paidCount = 0;
     pay_requests.forEach(user => {
