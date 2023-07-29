@@ -2,6 +2,7 @@
     import Bio from '$lib/components/Bio.svelte'
     import Features from '$lib/components/Features.svelte'
     import FeaturesItem from '$lib/components/FeaturesItem.svelte'
+    import Location from '$lib/components/Location.svelte'
     import Name from '$lib/components/Name.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
     import ProfileImage from '$lib/components/ProfileImage.svelte'
@@ -18,6 +19,7 @@
                     <ProfileImage src={pal.image_data_url} />
                 </div>
                 <Name name={`${pal.name} ${pal.lastname}`} is_verified={pal.is_verified} />
+                <!-- <Location location={pal.location} /> -->
                 <Features>
                     <FeaturesItem
                         value={pal.age}
