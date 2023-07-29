@@ -24,9 +24,9 @@
     </Features>
 
     <div class="instructions">
-        <p>To proceed with meeting {name}, a payment of 5.99 CAD is required.</p>
-        <p>If {name} also pays to meet you, is because {name} is genuinely interested.</p>
-        <p>Don't worry, if {name} doesn't make the payment in 7 days, we'll refund you.</p>
+        <p>To proceed with meeting <strong>{name}</strong>, a payment of 5.99 CAD is required.</p>
+        <p>If <strong>{name}</strong> also pays to meet you, is because <strong>{name}</strong> is genuinely interested.</p>
+        <p>Don't worry, if <strong>{name}</strong> doesn't make the payment in 7 days, we'll refund you.</p>
     </div>
     <form method="post">
         <div class="actions">
