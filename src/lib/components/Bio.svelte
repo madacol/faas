@@ -14,5 +14,7 @@
         font-size: medium;
         white-space: pre-wrap;
         margin: 0;
+        max-height: 30rem;
+        overflow: auto;
     }
 </style>
