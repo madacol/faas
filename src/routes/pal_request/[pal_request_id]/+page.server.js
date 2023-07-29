@@ -3,7 +3,7 @@ import { payToMeet } from "$lib/server/payToMeet.js";
 import { error } from "@sveltejs/kit";
 import { redirect } from "@sveltejs/kit";
 
-export async function load({ locals, params }) {
+export async function load({ params }) {
 
     const {rows: pay_requests} = await sql`
         SELECT
@@ -22,44 +22,34 @@ export async function load({ locals, params }) {
         if (user.status === 'paid') paidCount++;
     });
 
-    let user;
+    let user_id
     switch (paidCount) {
         case 0:
-            ({rows: [user]} = await sql`
-                SELECT
-                    name,
-                    lastname,
-                    email,
-                    gender,
-                    to_char(birthday,'YYYY-MM-DD') as birthday,
-                    bio,
-                    image_data_url
-                FROM users
-                WHERE user_id = ${pay_requests[0].requestee_id}
-                ;`
-            )
+            user_id = pay_requests[0].requestee_id
             break;
         case 1:
-            ({rows: [user]} = await sql`
-                SELECT
-                    name,
-                    lastname,
-                    email,
-                    gender,
-                    to_char(birthday,'YYYY-MM-DD') as birthday,
-                    bio,
-                    image_data_url
-                FROM users
-                WHERE user_id = ${pay_requests[0].requester_id}
-                ;`
-            )
+            user_id = pay_requests[0].requester_id
             break;
         case 2:
             throw error(400, `Already Pals!`);
         default:
             throw error(500, `Something went wrong`);
-    }
+        }
 
+    const {rows: [user]} = await sql`
+        SELECT
+            name,
+            lastname,
+            email,
+            gender,
+            to_char(birthday,'YYYY-MM-DD') as birthday,
+            bio,
+            image_data_url,
+            is_verified,
+            EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthday)) as age
+        FROM users
+        WHERE user_id = ${user_id}
+    ;`
     return { user };
 }
 

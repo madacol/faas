@@ -1,5 +1,5 @@
 <script>
-    import Verified from "./Verified.svelte"
+    import Verified from "./VerifiedIcon.svelte"
 
     /** @type {string} */
      export let name;
@@ -7,9 +7,9 @@
 </script>
 
 <div class="name" >
-    <h1 title={name}>
+    <span title={name}>
         {name}
-    </h1>
+    </span>
     {#if is_verified}
         <Verified />
     {/if}
@@ -22,7 +22,8 @@
         align-items: center;
         gap: 0.5rem;
     }
-    h1 {
-        margin: 0;
+    span {
+        font-size: x-large;
+        font-weight: bold;
     }
 </style>

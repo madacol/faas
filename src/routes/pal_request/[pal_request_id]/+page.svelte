@@ -1,41 +1,39 @@
 <script>
-    import LinkButton from '$lib/components/LinkButton.svelte'
+    import Features from '$lib/components/Features.svelte'
+    import FeaturesItem from '$lib/components/FeaturesItem.svelte'
+    import SecondaryLinkButton from '$lib/components/SecondaryLinkButton.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import ProfileImageName from '$lib/components/ProfileImageName.svelte'
 
     export let data
-    let { name, lastname, email, gender, birthday, bio, image_data_url } =
+    let { name, lastname, email, gender, age, bio, image_data_url, is_verified } =
         data.user
 </script>
 
-<main>
-    <img
-        src={image_data_url || "/no_profile.png"}
-        alt="logo"
+<main class="box">
+
+    <ProfileImageName
+        src={image_data_url}
+        name={`${name} ${lastname}`}
+        {is_verified}
     />
 
-    <form method="post">
-        <h2 style="margin: 0; padding:0;">{name + ' ' + lastname}</h2>
+    <Features>
+        <FeaturesItem value={age} label="Age" sub="yr" />
+        <FeaturesItem value={gender} label="Gender" />
+    </Features>
 
-        <p><i class="fa fa-map-marker" aria-hidden="true" /> Windsor, Canada</p>
-        <p><i class="fa fa-user-o" aria-hidden="true" /> Gender: {gender}</p>
-        <p>
-            <i class="fa fa-calendar-o" aria-hidden="true" /> Birthday on {birthday}
-        </p>
-        <br />
-        <p>
-            To proceed with meeting {name}, a payment of 5.99 CAD is required.
-        </p>
-        <p>
-            If {name} also pays to meet you, is because {name} is genuinely interested.
-        </p>
-        <p>
-            Don't worry, if {name} doesn't make the payment in 7 days, we'll
-            refund you.
-        </p>
-        <p />
-        <PrimaryButton type="submit">Pay</PrimaryButton>
+    <div class="instructions">
+        <p>To proceed with meeting {name}, a payment of 5.99 CAD is required.</p>
+        <p>If {name} also pays to meet you, is because {name} is genuinely interested.</p>
+        <p>Don't worry, if {name} doesn't make the payment in 7 days, we'll refund you.</p>
+    </div>
+    <form method="post">
+        <div class="actions">
+            <SecondaryLinkButton href="/pals">Keep Searching</SecondaryLinkButton>
+            <PrimaryButton type="submit">Pay</PrimaryButton>
+        </div>
     </form>
-    <LinkButton href="/pals">Keep Searching</LinkButton>
 </main>
 
 <style>
@@ -43,33 +41,25 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-bottom: 0.5rem;
-        margin-top: 1rem;
-    }
-    form {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        align-items: stretch;
+        margin: 2rem auto;
+        max-width: 30rem;
         gap: 1rem;
-        padding: 1rem;
-        text-align: start;
-        max-width: 17em;
-        align-self: center;
+    }
+    .instructions {
+        margin: 0 2rem;
     }
     p {
-        margin: 0;
-        padding: 0;
         font-size: small;
+        text-align: start;
+    }
+    .actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+        gap: 1em;
     }
 
-    img {
-        display: block;
-        width: 8em;
-        aspect-ratio: 1/1;
-        padding-top: 10px;
-        align-self: center;
-        border-radius: 50%;
-        overflow: hidden;
+    .actions > :global(*) {
+        flex: 1;
     }
 </style>

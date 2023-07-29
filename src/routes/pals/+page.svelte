@@ -14,7 +14,9 @@
     {#each data.pals as pal}
         <div>
             <article class="user box">
-                <ProfileImage src={pal.image_data_url} />
+                <div class="image">
+                    <ProfileImage src={pal.image_data_url} />
+                </div>
                 <Name name={`${pal.name} ${pal.lastname}`} is_verified={pal.is_verified} />
                 <Features>
                     <FeaturesItem
@@ -29,7 +31,7 @@
                 </Features>
                 <Bio bio={pal.bio} />
                 <div class="actions">
-                    <SecondaryLinkButton href={`/pal_profile/${pal.user_id}`} class="profile">View profile!</SecondaryLinkButton>
+                    <!-- <SecondaryLinkButton href={`/pal_profile/${pal.user_id}`} class="profile">View profile!</SecondaryLinkButton> -->
                     <form class="meet" method="post">
                         <input type="hidden" name="pal_id" value={pal.user_id} />
                         <PrimaryButton type="submit">Meet!</PrimaryButton>
@@ -57,6 +59,13 @@
         padding: 0 1rem 1rem 1rem;
         gap: 1rem;
         margin-top: 3rem;
+    }
+
+    .image {
+        margin: auto;
+    }
+    .image > :global(img) {
+        margin: -50% auto auto auto;
     }
     .actions {
         display: flex;

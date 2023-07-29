@@ -1,5 +1,7 @@
 <script>
   import { page } from '$app/stores';
+    import LinkButton from '$lib/components/LinkButton.svelte'
+    import PrimaryButton from '$lib/components/PrimaryButton.svelte'
   export let data;
 
   let menu_open = false;
@@ -19,17 +21,20 @@
         <a href="/personality_test">Personality Test</a>
       </div>
     {/if}
+
   </div>
-  <nav>
+  <div id="right-menu">
     {#if data.user}
-        <button
-            id="profile-menu-button"
+      <div id="profile">
+        <PrimaryButton
             on:click={e => {
                 e.stopPropagation()
                 menu_open = !menu_open
             }}
-            on:keypress|self={e => e.key === 'Enter' && (menu_open = !menu_open)}
-        >{data.user.name}</button>
+            on:keypress={e => e.key === 'Enter' && (menu_open = !menu_open)}
+        >
+          {data.user.name}
+        </PrimaryButton>
 
         <div
             id="profile-menu"
@@ -46,10 +51,13 @@
               <a class="logout" href="/logout?redirectTo={$page.url.pathname}">Logout</a>
             </div>
         </div>
+      </div>
     {:else}
-        <a id="login-button" href="/login">Login</a>
+      <div id="login-button">
+        <LinkButton href="/login">Sign In</LinkButton>
+      </div>
     {/if}
-  </nav>
+  </div>
 </header>
 
 
@@ -61,11 +69,13 @@
 </div>
 
 <style>
+    :global(html) {
+      font-size: calc(10px + 1vmin);
+    }
     :global(body) {
       margin: 0;
       padding: 0;
       font-family: DM Sans , sans-serif;
-      font-size: calc(10px + 1vmin);
       display: flex;
       flex-direction: column;
       height: 100vh;
@@ -112,8 +122,18 @@
       color: #fffafa;
     }
 
-    nav {
+    #right-menu {
       position: relative;
+      display: flex;
+      gap: 1em;
+      align-items: stretch;
+      align-self: stretch;
+    }
+
+    #right-menu > div {
+      padding: 1em 0;
+      display: flex;
+      align-items: center;
     }
 
     .logo > a {
@@ -124,6 +144,10 @@
       display: block;
       margin: 5px;
       
+    }
+
+    #profile {
+      position: relative;
     }
 
     #profile-menu {
@@ -138,20 +162,6 @@
       gap: 10px;
       align-items: start;
     }
-
-    #profile-menu-button {
-      padding: 10px 20px;
-      background: #3D74A6;
-      color: #fff8f8;
-      border: none;
-      cursor: pointer;
-      border-radius: 0.7em;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    #profile-menu-button:hover {
-      opacity: 0.8;
-    }
     #profile-menu.open {
       display: flex;
     }
@@ -159,22 +169,6 @@
     .profile-menu-item {
       margin-right: 10px;
     }
-
-    #login-button {
-      padding: 10px 20px;
-      background: #3D74A6;
-      color: #fff8f8;
-      border: none;
-      cursor: pointer;
-      border-radius: 0.7em;
-      text-decoration: none;
-      font-weight: bold;
-
-    }
-    #login-button:hover {
-      opacity: 0.8;
-    }
-    
 
     #content {
       overflow: auto;
