@@ -19,7 +19,7 @@
     input {
         height: 3.5rem;
         flex-shrink: 0;
-        border-radius: 100px;
+        border-radius: 2rem;
         border: 1px solid #e5e5e5;
         background: #fcfcfc;
         color: rgba(0, 0, 0, 0.79);
