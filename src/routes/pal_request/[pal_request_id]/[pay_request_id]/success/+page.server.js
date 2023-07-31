@@ -72,7 +72,10 @@ export async function load({ params, url }) {
                 requester.email,
                 `${requestee.name} knows you're interested on Friendpals!`,
                 `Hey ${requester.name},\n\n`
-                    + `We've notified ${requestee.name} that you're interested in meeting them on Friendpals. ${requestee.name} is aware and has until ${in_7_days} to make the payment of 5.99 CAD. In case ${requestee.name} doesn't make the payment within the specified timeframe, we'll refund your money. Stay positive, and let's see what happens!\n\n`
+                    + `We've notified ${requestee.name} that you're interested in meeting them on Friendpals.\n`
+                    + `${requestee.name} has 7 days (until ${in_7_days}) to decide to meet you.\n\n`
+                    + `In case ${requestee.name} doesn't make the payment within the specified timeframe, we'll refund your money.\n\n`
+                    + `Stay positive, and let's see what happens!\n`
                     + `Fingers crossed for a potential friendship!\n\n`
                     + `Warm regards,\n`
                     + `The Friendpals Team`
@@ -94,7 +97,7 @@ export async function load({ params, url }) {
                 `Hey ${requestee.name}!\n\n`
                     + `Big news! ${requester.name}, your potential friend on Friendpals, paid 5.99 CAD to meet you. ${requester.name} is genuinely interested in getting to know you better.\n\n`
                     + `To meet ${requester.name}, go into this link ${meet_url} , and kindly make a payment of 5.99 CAD too.\n\n`
-                    + `Once your payment is made, we'll share to you ${requester.name}'s contact info. You have until ${in_7_days} to make the payment. Let's make this friendship happen!\n\n`
+                    + `Once your payment is made, we'll share to you ${requester.name}'s contact info. You have 7 days (until ${in_7_days}) to make the payment. Let's make this friendship happen!\n\n`
                     + `Cheers,\n`
                     + `The Friendpals Team`
             );
