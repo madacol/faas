@@ -1,11 +1,18 @@
 <script>
     import LinkButton from "$lib/components/LinkButton.svelte"
+
+    export let data
+    const {messages_to_show} = data
 </script>
 
 <main class="box">
     <h1>
         Paid successfully!
     </h1>
+
+    {#each messages_to_show as message}
+        <p>{message}</p>
+    {/each}
 
     <div>
         <LinkButton href="/pals">Keep Searching</LinkButton>
@@ -24,5 +31,8 @@
     div {
         display: flex;
         justify-content: center;
+    }
+    p {
+        margin: 0;
     }
 </style>

@@ -46,6 +46,9 @@ export async function load({ params, url }) {
     // @ts-ignore
     const requester = pay_requests[0].users.find(user => user.user_id === pay_requests[0].requester_id);
 
+    /** @type {string[]} */
+    let messages_to_show = [];
+
     switch (paidCount) {
         case 1:
 
@@ -101,6 +104,13 @@ export async function load({ params, url }) {
                     + `Cheers,\n`
                     + `The Friendpals Team`
             );
+
+            messages_to_show = [
+                `We've notified ${requestee.name} that you're interested in meeting them on Friendpals.`,
+                `${requestee.name} has 7 days to decide to meet you.`,
+                `In case ${requestee.name} doesn't make the payment within 7 days, we'll refund your money.`,
+                `Stay positive, and let's see what happens!`,
+            ]
             break;
 
         case 2:
@@ -207,9 +217,20 @@ export async function load({ params, url }) {
                     + `All the best,\n`
                     + `The Friendpals Team`
             );
+
+            messages_to_show = [
+                `Congratulations! You're now connected with ${requester.name}, your potential friend on Friendpals.`,
+                `Here's ${requester.name}'s contact info:`,
+                `Full name: ${requester.name} ${requester.lastname}`,
+                `Email: ${requester.email}`,
+                `We've also shared your contact info with ${requestee.name}.`,
+                `We wish you a meaningful friendship!`,
+            ]
             break;
         default:
             console.error({paidCount, pay_requests});
             throw new Error('Something went really wrong!');
     }
+
+    return {messages_to_show};
 }
