@@ -2,6 +2,7 @@
   import { page } from '$app/stores';
     import LinkButton from '$lib/components/LinkButton.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import Logo from './Logo.svelte'
   export let data;
 
   let menu_open = false;
@@ -13,7 +14,9 @@
 <header>
   <div class="logo_links">
     <div class="logo">
-      <a href="/" aria-label="logo" />
+      <a href="/" aria-label="logo">
+        <Logo/>
+      </a>
     </div>
     {#if isAdmin}
       <div class="links">
@@ -91,7 +94,6 @@
     }
 
     header {
-      background: #95b1ca;
       padding: 0 1em 0 0;
       display: flex;
       gap: 2em;
@@ -136,14 +138,8 @@
       align-items: center;
     }
 
-    .logo > a {
-      background-image: url(/logo.png);
-      background-size: contain;
-      height: 4em;
-      width: 4em;
-      display: block;
-      margin: 5px;
-      
+    .logo {
+      padding: 1em;
     }
 
     #profile {
