@@ -1,42 +1,50 @@
 <script>
-    import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import Logo from './Logo.svelte';
+    import LinkButton from '$lib/components/LinkButton.svelte'
+    import Carousel from 'svelte-carousel';
+    import { browser } from '$app/environment';
 </script>
 
-<main>
-    <img src="/logo.png" alt="logo" style="padding-top: 10px;" />
+<main class="box">
+    <Logo/>
     <h3>Find friends in Windsor</h3>
-    <div style="max-width: 300px; ">
-        <div style="display: flex;">
-            <h5>
-                Step 1 is to sign up <a
-                    href="/signup">here</a
-                >
-            </h5>
-            <img src="/image_1_intro.png" alt="image_1_intro.png" />
-        </div>
-        <div style="display: flex;">
-            <img src="/image_2_intro.png" alt="image_2_intro.png" />
-            <h5>
-                Step 2 : ID Validation. We make sure people are who
-                they say they are!
-            </h5>
-        </div>
+    {#if browser}
+        <Carousel>
+            <article>
+                <img
+                    src="/sing_up.step_1.png"
+                    alt="sign up drawing"
+                />
+                <span>
+                    <strong>Step 1:</strong> Sign up <a
+                        href="/signup">here</a
+                    >
+                </span>
+            </article>
+            <article>
+                <img
+                    src="/sing_up.step_2.png"
+                    alt="ID validation drawing"
+                />
+                <span>
+                    <strong>Step 2:</strong> ID Validation. We make sure people are who
+                    they say they are!
+                </span>
+            </article>
 
-        <div style="display: flex;">
-            <h5>
-                Step 3 Pay per meet. You only pay if you agree to meet someone
-            </h5>
-            <img
-                style="padding-left:5px ;"
-                src="/image_3_intro.png"
-                alt="image_3_intro.png"
-            />
-        </div>
-        <div style="padding-top: 15px;">
-            <a href="/signup"
-                ><PrimaryButton type="submit">Get Started</PrimaryButton></a
-            >
-        </div>
+            <article>
+                <img
+                    src="/sing_up.step_3.png"
+                    alt="Pay per meet drawing"
+                />
+                <span>
+                    <strong>Step 3:</strong> Meet. You only pay if you agree to meet someone
+                </span>
+            </article>
+        </Carousel>
+    {/if}
+    <div class="button">
+        <LinkButton href="/signup">Get Started</LinkButton>
     </div>
 </main>
 
@@ -45,7 +53,25 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
         margin: auto;
+        max-width: 26rem;
+        gap: 1em;
+    }
+    h3 {
+        margin: 0;
+    }
+    img {
+        width: 100%;
+    }
+    article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+    }
+    .button {
+        display: flex;
     }
 </style>
