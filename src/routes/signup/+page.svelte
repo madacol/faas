@@ -4,6 +4,7 @@
     import Input from '$lib/components/Input.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
     import { PASSWORD_MINLENGTH } from '$lib/config.js'
+    import Logo from '../Logo.svelte'
 
     export let form
 
@@ -40,7 +41,7 @@
     {#if error}
         <p class="error">{error}</p>
     {/if}
-    <img src="/logo.png" alt="logo" style="padding-top: 40px;" />
+    <Logo />
     <div style="display: flex; align-items: center;">
         <h1 style="align-self: flex-end;">Welcome!</h1>
         <img
