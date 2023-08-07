@@ -53,12 +53,13 @@
             minlength={PASSWORD_MINLENGTH}
         />
 
-        <div style="padding-top: 20px;">
+        <div>
             <PrimaryButton
                 type="submit"
                 on:click={(e) => (validate() || e.preventDefault())}
-                >Change password</PrimaryButton
             >
+                Change password
+            </PrimaryButton>
         </div>
     </form>
 </main>
