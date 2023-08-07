@@ -1,12 +1,12 @@
 <script>
-    import Features from '$lib/components/Features.svelte'
-    import FeaturesItem from '$lib/components/FeaturesItem.svelte'
     import SecondaryLinkButton from '$lib/components/SecondaryLinkButton.svelte'
     import Location from '$lib/components/Location.svelte'
     import Name from '$lib/components/Name.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
     import ProfileImageEdit from '$lib/components/ProfileImageEdit.svelte'
     import TextArea from '$lib/components/TextArea.svelte'
+    import Input from '$lib/components/Input.svelte'
+    import Select from '$lib/components/Select.svelte'
 
     export let data
     let {
@@ -17,7 +17,6 @@
         birthday,
         bio,
         image_data_url,
-        pal_requests_count,
         is_verified
     } = data.user
 
@@ -52,16 +51,23 @@
         <ProfileImageEdit on:change={handleFileSelect} src={image_data_url} />
         <Name name={`${name} ${lastname}`} is_verified={is_verified} />
         <Location />
-        <Features>
-            <FeaturesItem
-                value={birthday}
-                label="Birthday"
-            />
-            <FeaturesItem
-                value={gender}
-                label=Gender
-            />
-        </Features>
+        <Input
+            value={birthday}
+            label="Birthday"
+            type="date"
+            name="birthday"
+        />
+
+        <Select
+            options={[
+                {value: "male", label: "Male"},
+                {value: "female", label: "Female"},
+                {value: "non-binary", label: "Non-binary"},
+                {value: "other", label: "Other"},
+            ]}
+            bind:selected={gender}
+            name="gender"
+        />
 
         <TextArea name="bio" placeholder="User Bio" value={bio} />
 
