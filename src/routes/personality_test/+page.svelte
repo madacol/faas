@@ -61,10 +61,6 @@
 </main>
 
 <style>
-    :global(body) {
-        background-color: #f3ece6;
-    }
-
     main {
         font-size: 0.8em;
         padding: 1.5em;
