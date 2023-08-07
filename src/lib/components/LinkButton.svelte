@@ -6,11 +6,13 @@
 </script>
 
 <a {href} {...$$restProps}>
-    <slot />
+    <button type="button">
+        <slot />
+    </button>
 </a>
 
 <style>
-    a {
+    button {
         text-decoration: none;
         background-color: #3d74a6;
         width: 100%;
@@ -24,7 +26,7 @@
         border-radius: 2rem;
         box-shadow: 0 0.3rem 0.9rem 0 rgba(6, 81, 126, 0.18);
     }
-    a:hover {
+    button:hover {
         background-color: #1d5b96;
     }
 </style>

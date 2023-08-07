@@ -6,7 +6,7 @@
 </script>
 
 <a {href} {...$$restProps}>
-    <button>
+    <button type="button">
         <slot />
     </button>
 </a>

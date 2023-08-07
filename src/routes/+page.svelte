@@ -43,9 +43,7 @@
             </article>
         </Carousel>
     {/if}
-    <div class="button">
-        <LinkButton href="/signup">Get Started</LinkButton>
-    </div>
+    <LinkButton href="/signup">Get Started</LinkButton>
 </main>
 
 <style>
@@ -70,8 +68,5 @@
         justify-content: center;
         align-items: center;
         gap: 1em;
-    }
-    .button {
-        display: flex;
     }
 </style>
