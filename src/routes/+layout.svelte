@@ -71,28 +71,8 @@
     <slot />
 </div>
 
+
 <style>
-    :global(html) {
-      font-size: calc(10px + 1vmin);
-    }
-    :global(body) {
-      margin: 0;
-      padding: 0;
-      font-family: DM Sans , sans-serif;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      min-height: 400px;
-      align-items: stretch;
-    }
-
-    :global(.box) {
-        background-color: white;
-        border-radius: 2rem;
-        box-shadow: 0 0.5rem 1.5rem 0 rgba(6, 81, 126, 0.18);
-        padding: 1rem;
-    }
-
     header {
       padding: 0 1em 0 0;
       display: flex;
