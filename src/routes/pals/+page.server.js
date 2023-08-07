@@ -16,7 +16,8 @@ export async function load() {
             , image_data_url
             , is_verified
         FROM users
-        ORDER BY (NOT is_verified), random()
+        -- ORDER BY (NOT is_verified), random()
+        WHERE is_verified = true
         LIMIT 50
         ;
     `
