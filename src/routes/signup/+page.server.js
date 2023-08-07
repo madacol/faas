@@ -28,7 +28,7 @@ export const actions = {
         }
 
         if (password.length < PASSWORD_MINLENGTH) {
-            return fail(422, {error: "Password must be at least 8 characters long"})
+            return fail(422, {error: `Password must be at least ${PASSWORD_MINLENGTH} characters long`})
         }
 
         const password_hash = await argon2.hash(password, argon_options);
