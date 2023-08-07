@@ -16,9 +16,7 @@
                     alt="sign up drawing"
                 />
                 <span>
-                    <strong>Step 1:</strong> Sign up <a
-                        href="/signup">here</a
-                    >
+                    <strong>Step 1:</strong> Sign up <a href="/signup">here</a>
                 </span>
             </article>
             <article>
