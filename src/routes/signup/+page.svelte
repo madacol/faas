@@ -106,7 +106,7 @@
         <div style="padding-top: 20px;">
             <PrimaryButton
                 type="submit"
-                on:submit={(e) => validate() || e.preventDefault()}
+                on:click={(e) => validate() || e.preventDefault()}
                 >Sign up</PrimaryButton
             >
         </div>
