@@ -24,7 +24,6 @@
     on:keyup
     on:keypress
     on:click
-    on:submit
 >
     <slot />
 </button>
