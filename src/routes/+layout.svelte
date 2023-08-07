@@ -73,12 +73,14 @@
   <hr>
 
   <div class="footer">
-    <a href="https://instagram.com/friendpalsontario">
-      <img width="30rem" src="/Instagram_Glyph_Black.svg" alt="Friendpal's Instagram page link">
-    </a>
-    <a href="https://www.facebook.com/friendpalsontario">
-      <img width="30rem" src="/f_logo_RGB-Black_58.png" alt="Friendpal's Facebook page link">
-    </a>
+    <div class="social">
+      <a href="https://instagram.com/friendpalsontario">
+        <img width="30rem" src="/Instagram_Glyph_Black.svg" alt="Friendpal's Instagram page link">
+      </a>
+      <a href="https://www.facebook.com/friendpalsontario">
+        <img width="30rem" src="/f_logo_RGB-Black_58.png" alt="Friendpal's Facebook page link">
+      </a>
+    </div>
     <a href="mailto:info@friendpals.ca">info@friendpals.ca</a>
   </div>
 </div>
@@ -187,8 +189,13 @@
     }
     .footer {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
+      gap: 1rem;
+    }
+    .social {
+      display: flex;
       gap: 1rem;
     }
 </style>
