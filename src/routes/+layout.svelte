@@ -69,7 +69,21 @@
     on:keypress|self={e => e.key === 'Enter' && (menu_open = false)}
 >
     <slot />
+
+  <hr>
+
+  <div class="footer">
+    <div id="fb-root"></div>
+    <a href="https://instagram.com/friendpalsontario">
+      <img width="30rem" src="/Instagram_Glyph_Black.svg" alt="Friendpal's Instagram link">
+    </a>
+    <div class="fb-like" data-href="https://www.facebook.com/friendpalsontario" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+  </div>
 </div>
+<svelte:head>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v17.0" nonce="dr5uTsOC"></script>
+</svelte:head>
+
 
 
 <style>
@@ -165,8 +179,17 @@
     a.logout {
       color: #9d0000;
     }
-    hr {
+    #profile-menu hr {
       align-self: stretch;
       margin: 0;
+    }
+    hr {
+      margin: 2rem 0 1rem 0;
+    }
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
     }
 </style>
