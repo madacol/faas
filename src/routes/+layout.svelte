@@ -73,16 +73,15 @@
   <hr>
 
   <div class="footer">
-    <div id="fb-root"></div>
     <a href="https://instagram.com/friendpalsontario">
-      <img width="30rem" src="/Instagram_Glyph_Black.svg" alt="Friendpal's Instagram link">
+      <img width="30rem" src="/Instagram_Glyph_Black.svg" alt="Friendpal's Instagram page link">
     </a>
-    <div class="fb-like" data-href="https://www.facebook.com/friendpalsontario" data-width="" data-layout="" data-action="" data-size="" data-share="true"></div>
+    <a href="https://www.facebook.com/friendpalsontario">
+      <img width="30rem" src="/f_logo_RGB-Black_58.png" alt="Friendpal's Facebook page link">
+    </a>
+    <a href="mailto:info@friendpals.ca">info@friendpals.ca</a>
   </div>
 </div>
-<svelte:head>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v17.0" nonce="dr5uTsOC"></script>
-</svelte:head>
 
 
 
