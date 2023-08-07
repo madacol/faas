@@ -3,6 +3,7 @@
 
     import Input from '$lib/components/Input.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
+    import Select from '$lib/components/Select.svelte'
     import { PASSWORD_MINLENGTH } from '$lib/config.js'
     import Logo from '../Logo.svelte'
 
@@ -95,13 +96,16 @@
             on:focus={e=>e.currentTarget.type='date'}
             placeholder="Birthday"
         />
-        <select name="gender">
-            <option disabled selected hidden>Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="non-binary">Non-binary</option>
-            <option value="other">Other</option>
-        </select>
+        <Select
+            options={[
+                {value: "male", label: "Male"},
+                {value: "female", label: "Female"},
+                {value: "non-binary", label: "Non-binary"},
+                {value: "other", label: "Other"},
+            ]}
+            name="gender"
+            placeholder="Select Gender"
+        />
 
         <div style="padding-top: 20px;">
             <PrimaryButton
@@ -135,18 +139,5 @@
         gap: 1rem;
         max-width: 20rem;
         padding: 1rem;
-    }
-    select {
-        width: 308px;
-        height: 50px;
-        flex-shrink: 0;
-        border-radius: 100px;
-        border: 0;
-        background: #fcfcfc;
-
-        color: rgba(0, 0, 0, 0.79);
-        text-align: center;
-        font-size: 14px;
-        line-height: 171.5%;
     }
 </style>
