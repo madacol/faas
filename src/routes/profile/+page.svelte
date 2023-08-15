@@ -20,35 +20,13 @@
         is_verified
     } = data.user
 
-    /**
-     * @param {Event & { currentTarget: EventTarget & HTMLInputElement; }} event
-     */
-    function handleFileSelect(event) {
-        if (!event?.currentTarget?.files?.length) return;
-
-        const file = event.currentTarget.files[0];
-        const reader = new FileReader();
-
-        reader.onload = function (event) {
-          // @ts-ignore
-          const base64String = event.target.result;
-          // Do something with the base64String, like displaying it or sending it to the server
-          if (typeof base64String !== 'string') {
-            console.error('Result is not a string', base64String);
-            return;
-          }
-          image_data_url = base64String;
-        };
-
-        reader.readAsDataURL(file);
-    }
 </script>
 
 <main class="box">
 
     <form method="post">
 
-        <ProfileImageEdit on:change={handleFileSelect} src={image_data_url} />
+        <ProfileImageEdit src={image_data_url} />
         <Name name={`${name} ${lastname}`} is_verified={is_verified} />
         <Location />
         <Input

@@ -3,7 +3,7 @@
     export let src;
 </script>
 
-<img src={src || '/no_profile.png'} alt="profile" />
+<img src={src || '/no_profile.png'} alt="profile" on:load />
 
 <style>
 
