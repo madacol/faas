@@ -7,6 +7,7 @@
     import TextArea from '$lib/components/TextArea.svelte'
     import Input from '$lib/components/Input.svelte'
     import Select from '$lib/components/Select.svelte'
+    import MainContainer from '$lib/components/MainContainer.svelte'
 
     export let data
     let {
@@ -22,8 +23,7 @@
 
 </script>
 
-<main class="box">
-
+<MainContainer>
     <form method="post">
 
         <ProfileImageEdit src={image_data_url} />
@@ -54,21 +54,13 @@
             <PrimaryButton type="submit">Update</PrimaryButton>
         </div>
     </form>
-</main>
+</MainContainer>
 
 
 <style>
-    main {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        max-width: 40rem;
-        margin: auto;
-    }
     form {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
         gap: 1em;
         align-self: stretch;
     }

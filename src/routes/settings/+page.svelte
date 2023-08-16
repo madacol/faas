@@ -1,6 +1,7 @@
 <script>
 
     import Input from '$lib/components/Input.svelte'
+    import MainContainer from '$lib/components/MainContainer.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
     import { PASSWORD_MINLENGTH } from '$lib/config.js'
 
@@ -25,7 +26,7 @@
     }
 </script>
 
-<main>
+<MainContainer>
     {#if error}
         <p class="error">{error}</p>
     {/if}
@@ -62,21 +63,16 @@
             </PrimaryButton>
         </div>
     </form>
-</main>
+</MainContainer>
 
 <style>
-    main {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
     form {
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        max-width: 20rem;
-        padding: 1rem;
+    }
+    h2 {
+        margin-top: 0;
     }
     .error {
         color: red;
