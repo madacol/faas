@@ -18,9 +18,10 @@
         display: flex;
         align-items: center;
         gap: 0.3rem;
+        opacity: 0.6;
     }
     button:hover {
-        opacity: 0.6;
+        opacity: 1;
     }
     .back-icon {
         font-size: 1.5em;
