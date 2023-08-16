@@ -44,4 +44,10 @@
     .slider :global(.noUi-tooltip) {
         font-size: 0.8rem;
     }
+    .slider :global(.noUi-connect) {
+        background-color: var(--primary-color, #3d74a6);
+    }
+    .slider:hover :global(.noUi-connect) {
+        background-color: var(--primary-hover-color, #1d5b96);
+    }
 </style>
