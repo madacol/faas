@@ -10,8 +10,6 @@
     {type}
     {disabled}
     {...$$restProps}
-    on:input
-    on:change
     on:blur
     on:focus
     on:mousedown
@@ -42,7 +40,11 @@
         border-radius: 2rem;
         box-shadow: 0 0.3rem 0.9rem 0 rgba(6, 81, 126, 0.18);
     }
-    button:hover {
+    button:not(:disabled):hover {
         background-color: #1d5b96;
+    }
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 </style>

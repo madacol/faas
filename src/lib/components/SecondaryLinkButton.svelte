@@ -1,12 +1,28 @@
 <script>
-   /**
-     * @type {string}
-     */
+   /** @type {string} */
     export let href;
+
+    /** @type {boolean} */
+    export let disabled = false
 </script>
 
-<a {href} {...$$restProps}>
-    <button type="button">
+<a
+    {href}
+    {...$$restProps}
+    on:blur
+    on:focus
+    on:mousedown
+    on:mouseup
+    on:mouseenter
+    on:mouseleave
+    on:mouseover
+    on:mouseout
+    on:keydown
+    on:keyup
+    on:keypress
+    on:click
+>
+    <button {disabled} type="button">
         <slot />
     </button>
 </a>
@@ -26,7 +42,11 @@
         border-radius: 2rem;
         box-shadow: 0 0.3rem 0.9rem 0 rgba(6, 81, 126, 0.18);
     }
-    button:hover {
+    button:not(:disabled):hover {
         background-color: #e1f4ff;
+    }
+    button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
     }
 </style>
