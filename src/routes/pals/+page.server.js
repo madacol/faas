@@ -1,7 +1,12 @@
 import { sql } from "$lib/server/db";
 import { redirect } from "@sveltejs/kit";
 
-export async function load() {
+export async function load({locals}) {
+
+    // if user is not verified, redirect to the verify page
+    if (!locals.user.is_verified) {
+        throw redirect(303, '/verify');
+    }
 
     const {rows: pals} = await sql`
         SELECT
