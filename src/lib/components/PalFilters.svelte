@@ -35,7 +35,7 @@
 
 <div class="filters">
     <div class="age">
-        Age
+        Ages
         <RangeSlider bind:min={minAge} bind:max={maxAge} on:rangeUpdate={handleRangeUpdate} />
     </div>
 
