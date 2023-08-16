@@ -4,15 +4,26 @@
     import FeaturesItem from '$lib/components/FeaturesItem.svelte'
     import Location from '$lib/components/Location.svelte'
     import Name from '$lib/components/Name.svelte'
+    import PalFilters from '$lib/components/PalFilters.svelte'
     import PrimaryButton from '$lib/components/PrimaryButton.svelte'
     import ProfileImage from '$lib/components/ProfileImage.svelte'
     import SecondaryLinkButton from '$lib/components/SecondaryLinkButton.svelte'
 
     export let data
+
+    let filteredPals = data.pals
+
 </script>
 
 <main class="box">
-    {#each data.pals as pal}
+
+    <PalFilters pals={data.pals} on:update={
+        (event) => {
+            filteredPals = event.detail.items
+        }
+    } />
+
+    {#each filteredPals as pal}
         <div>
             <article class="user box">
                 <div class="image">
