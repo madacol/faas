@@ -18,7 +18,7 @@
     /**
      * @param {string} src
      */
-    function resizeImageSrc(src, minDimension = 800) {
+    function resizeImageSrc(src, maxDimension = 800) {
         return new Promise((resolve) => {
 
             const img = new Image();
@@ -27,12 +27,12 @@
                 let width, height;
 
                 // Calculate new dimensions while preserving the aspect ratio
-                if (img.width < img.height) {
-                    width = minDimension;
-                    height = (minDimension * img.height) / img.width;
+                if (img.width > img.height) {
+                    width = maxDimension;
+                    height = (maxDimension * img.height) / img.width;
                 } else {
-                    height = minDimension;
-                    width = (minDimension * img.width) / img.height;
+                    height = maxDimension;
+                    width = (maxDimension * img.width) / img.height;
                 }
 
                 const canvas = document.createElement("canvas");
@@ -64,13 +64,12 @@
         reader.onload = async function (event) {
             // @ts-ignore
             const base64String = event.target.result;
-            // Do something with the base64String, like displaying it or sending it to the server
             if (typeof base64String !== 'string') {
                 console.error('Result is not a string', base64String);
                 return;
             }
 
-            src = await resizeImageSrc(base64String, 2000);
+            src = await resizeImageSrc(base64String, 3000);
         };
 
         reader.readAsDataURL(file);
