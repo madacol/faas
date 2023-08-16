@@ -6,7 +6,7 @@ import { stripe } from "$lib/server/stripe.js";
 import { error } from "@sveltejs/kit";
 import { json } from "@sveltejs/kit";
 
-export async function POST({ locals, request  }) {
+export async function POST({ request  }) {
     let event;
 
     // Verify the event came from Stripe
@@ -29,7 +29,14 @@ export async function POST({ locals, request  }) {
             break;
         }
         case 'identity.verification_session.processing': {
-
+            const verificationSession = event.data.object;
+            await sql`
+                UPDATE users
+                SET verification_status = 'pending'
+                WHERE user_id = ${verificationSession.metadata.user_id}
+                RETURNING name, lastname, email
+                ;
+            `;
             break;
         }
         case 'identity.verification_session.verified': {
@@ -42,6 +49,7 @@ export async function POST({ locals, request  }) {
             const { rows: [user] } = await sql`
                 UPDATE users
                 SET is_verified = true
+                    , verification_status = 'verified'
                 WHERE user_id = ${verificationSession.metadata.user_id}
                 RETURNING name, lastname, email
                 ;
@@ -65,9 +73,10 @@ export async function POST({ locals, request  }) {
             console.log('Verification check failed: ' + verificationSession.last_error.reason);
 
             const { rows: [user] } = await sql`
-                SELECT name, lastname, email
-                FROM users
+                UPDATE users
+                SET verification_status = 'requires_input'
                 WHERE user_id = ${verificationSession.metadata.user_id}
+                RETURNING name, lastname, email
                 ;
             `;
 

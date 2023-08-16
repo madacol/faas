@@ -12,6 +12,7 @@ declare global {
 			email: string;
 			expired: Date;
 			is_verified: boolean;
+			verification_status: string;
 			roles: number[];
 			permissions: string[];
 			image_data_url: string;

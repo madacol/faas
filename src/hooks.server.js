@@ -42,6 +42,7 @@ export async function handle({ event, resolve }) {
             users.email,
             users.image_data_url,
             users.is_verified,
+            verification_status,
             sessions.expires_at < NOW() AS expired,
             ARRAY_REMOVE(ARRAY_AGG(role_id), NULL) AS roles,
             array_merge_agg(permissions) AS permissions
