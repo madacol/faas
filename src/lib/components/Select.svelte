@@ -16,11 +16,12 @@
     bind:value={selected}
     name={name}
     {...$$restProps}
+    on:change
 >
-    <option value="" disabled hidden>{placeholder}</option>
     {#each options as option}
         <option value={option.value}>{option.label}</option>
     {/each}
+    <option value="" disabled hidden>{placeholder}</option>
 </select>
 <input type="hidden" {name} value={selected}>
 
