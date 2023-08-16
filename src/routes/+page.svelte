@@ -1,12 +1,10 @@
 <script>
-    import Logo from './Logo.svelte';
     import LinkButton from '$lib/components/LinkButton.svelte'
     import Carousel from 'svelte-carousel';
     import { browser } from '$app/environment';
 </script>
 
 <main class="box">
-    <Logo/>
     <h3>Find friends in Windsor</h3>
     {#if browser}
         <Carousel>
