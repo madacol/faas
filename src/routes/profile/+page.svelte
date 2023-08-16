@@ -50,7 +50,7 @@
         <TextArea name="bio" placeholder="User Bio" value={bio} />
 
         <div class="actions">
-            <SecondaryLinkButton href="/">Keep Searching</SecondaryLinkButton>
+            <SecondaryLinkButton href="/">Search Pals</SecondaryLinkButton>
             <PrimaryButton type="submit">Update</PrimaryButton>
         </div>
     </form>
