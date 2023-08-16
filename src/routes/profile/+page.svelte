@@ -21,12 +21,19 @@
         is_verified
     } = data.user
 
+    function validateData(event) {
+        if (!image_data_url || !bio) {
+            alert("Please fill in all fields")
+            event.preventDefault()
+        }
+    }
+
 </script>
 
 <MainContainer>
-    <form method="post">
+    <form method="post" on:submit={validateData}>
 
-        <ProfileImageEdit src={image_data_url} />
+        <ProfileImageEdit bind:src={image_data_url} />
         <Name name={`${name} ${lastname}`} is_verified={is_verified} />
         <Location />
         <Input
@@ -47,10 +54,10 @@
             name="gender"
         />
 
-        <TextArea name="bio" placeholder="User Bio" value={bio} />
+        <TextArea name="bio" placeholder="User Bio" bind:value={bio} />
 
         <div class="actions">
-            <SecondaryLinkButton href="/">Search Pals</SecondaryLinkButton>
+            <SecondaryLinkButton on:click={validateData} href="/">Search Pals</SecondaryLinkButton>
             <PrimaryButton type="submit">Update</PrimaryButton>
         </div>
     </form>
