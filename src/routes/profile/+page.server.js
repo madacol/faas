@@ -1,4 +1,5 @@
 import { sql } from "$lib/server/db";
+import { redirect } from "@sveltejs/kit";
 
 export async function load({ locals }) {
     const user_id = locals.user.user_id;
@@ -40,5 +41,7 @@ export const actions = {
                 RETURNING user_id
                 ;
         `;
+
+        throw redirect(303, `/`);
     },
 }
