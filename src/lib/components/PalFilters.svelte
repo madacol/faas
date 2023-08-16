@@ -34,7 +34,10 @@
 </script>
 
 <div class="filters">
-    <RangeSlider bind:min={minAge} bind:max={maxAge} on:rangeUpdate={handleRangeUpdate} />
+    <div class="age">
+        Age
+        <RangeSlider bind:min={minAge} bind:max={maxAge} on:rangeUpdate={handleRangeUpdate} />
+    </div>
 
     <Select
         options={[
@@ -51,6 +54,9 @@
 </div>
 
 <style>
+    .age {
+        text-align: center;
+    }
 .filters {
     display: grid;
     grid-template-columns: 1fr 1fr;
