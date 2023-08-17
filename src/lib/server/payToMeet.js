@@ -6,7 +6,8 @@ import { stripe } from "./stripe";
  * @param {string} cancel_url 
  * @returns 
  */
-export async function payToMeet(success_url, cancel_url) {
+export async function payToMeet(success_url, cancel_url, metadata = {}) {
+
     console.log({success_url, cancel_url});
     return await stripe.checkout.sessions.create({
         line_items: [
@@ -23,7 +24,8 @@ export async function payToMeet(success_url, cancel_url) {
         ],
         mode: 'payment',
         payment_intent_data: {
-          capture_method: 'manual',
+            capture_method: 'manual',
+            metadata,
         },
         success_url,
         cancel_url,

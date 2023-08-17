@@ -5,40 +5,32 @@ import { redirect } from "@sveltejs/kit";
 
 export async function load({ params }) {
 
-    const {rows: pay_requests} = await sql`
+    const {rows: [pal_request]} = await sql`
         SELECT
-            pay_requests.status,
+            pal_requests.status,
             requestee_id,
             requester_id
             FROM pal_requests
-            LEFT JOIN pay_requests USING (pal_request_id)
-            WHERE (pal_request_id=${params.pal_request_id})
-            ;
+            WHERE pal_request_id=${params.pal_request_id}
+        ;
     `;
 
-    if (pay_requests.length === 0) {
+    if (!pal_request) {
         throw error(404, `Pal Request not found`);
     }
 
-    if (pay_requests[0].status === 'cancelled') {
-        throw error(400, `Pal Request was cancelled`);
-    }
-
-    let paidCount = 0;
-    pay_requests.forEach(user => {
-        if (user.status === 'paid') paidCount++;
-    });
-
     let user_id
-    switch (paidCount) {
-        case 0:
-            user_id = pay_requests[0].requestee_id
+    switch (pal_request.status) {
+        case 'pending':
+            user_id = pal_request.requestee_id
             break;
-        case 1:
-            user_id = pay_requests[0].requester_id
+        case 'requester paid':
+            user_id = pal_request.requester_id
             break;
-        case 2:
+        case 'requestee paid':
             throw error(400, `Already Pals!`);
+        case 'cancelled':
+            throw error(400, `Pal Request was cancelled`);
         default:
             throw error(500, `Something went wrong`);
         }
@@ -56,7 +48,8 @@ export async function load({ params }) {
             EXTRACT(YEAR FROM AGE(CURRENT_DATE, birthday)) as age
         FROM users
         WHERE user_id = ${user_id}
-    ;`
+        ;
+    `
     return { user };
 }
 
@@ -64,42 +57,41 @@ export const actions = {
 	default: async ({ locals, url, params }) => {
         const user_id = locals.user.user_id;
 
-        const {rows: pay_requests} = await sql`
-            SELECT
-                pay_requests.status
+        const {rows: [pal_request]} = await sql`
+            SELECT status
             FROM pal_requests
-            JOIN pay_requests USING (pal_request_id)
             WHERE pal_request_id=${params.pal_request_id}
-                AND (pay_requests.status = 'paid' OR pay_requests.status IS NULL)
             ;
         `;
-        const paidCount = pay_requests.reduce(
-            (acc, pay_request) => {
-                return pay_request.status === 'paid'
-                            ? acc + 1
-                            : acc;
-            }
-            , 0
-        );
 
-        switch (paidCount) {
-            case 0:
-            case 1:
+        let payer;
+        switch (pal_request.status) {
+            case 'pending':
+                payer = 'requester';
                 break;
-            case 2:
+            case 'requester paid':
+                payer = 'requestee';
+                break;
+            case 'requestee paid':
                 throw error(400, `Already Pals!
 
                     Check your email
                     We already sent your pal's contact information`
                 )
             default:
+                console.error({pal_request});
                 throw error(500, `Something went wrong`);
         }
 
         // All validations passed, create a pay_request
 
-        const payRequestUUID = crypto.randomUUID();
-        const stripe_session = await payToMeet(`${url.origin}${url.pathname}/${payRequestUUID}/success`, `${url.origin}${url.pathname}/${payRequestUUID}/cancel`)
+        const pay_request_id = crypto.randomUUID();
+
+        const success_url = `${url.origin}${url.pathname}/success/${payer}`;
+        const cancel_url = `${url.origin}${url.pathname}/cancel`;
+        const metadata = { pay_request_id };
+
+        const stripe_session_promise = payToMeet(success_url, cancel_url, metadata);
         
         await sql`
             INSERT INTO pay_requests (
@@ -108,11 +100,13 @@ export const actions = {
                 user_id
             )
             VALUES (
-                ${payRequestUUID},
+                ${pay_request_id},
                 ${params.pal_request_id},
                 ${user_id}
             )
         `;
+
+        const stripe_session = await stripe_session_promise;
         
         if (!stripe_session?.url) {
             console.log({stripe_session});
