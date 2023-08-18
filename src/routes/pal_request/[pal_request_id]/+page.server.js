@@ -88,7 +88,7 @@ export const actions = {
         const pay_request_id = crypto.randomUUID();
 
         const success_url = `${url.origin}${url.pathname}/success/${payer}`;
-        const cancel_url = `${url.origin}${url.pathname}/cancel`;
+        const cancel_url = `${url.origin}${url.pathname}/cancel/${pay_request_id}`;
         const metadata = { pay_request_id };
 
         const stripe_session_promise = payToMeet(success_url, cancel_url, metadata);
