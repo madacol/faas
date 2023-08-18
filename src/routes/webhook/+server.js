@@ -337,6 +337,17 @@ export async function POST({ request, url }) {
 
             break;
         }
+        case 'payment_intent.payment_failed': {
+            const { pay_request_id } = event.data.object.metadata;
+            await sql`
+                UPDATE pay_requests
+                SET status = 'rejected'
+                WHERE pay_request_id = ${pay_request_id}
+                    AND status = 'pending'
+            ;`
+
+            break;
+        }
         case 'payment_intent.canceled': {
             const { pay_request_id } = event.data.object.metadata;
 
