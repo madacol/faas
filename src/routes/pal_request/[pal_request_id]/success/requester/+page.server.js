@@ -1,5 +1,6 @@
 import { sql } from "$lib/server/db";
 import { sendMail } from "$lib/server/sendMail.js";
+import { error } from "@sveltejs/kit";
 
 export async function load({ params }) {
     const {rows: [pal_request]} = await sql`
@@ -21,9 +22,14 @@ export async function load({ params }) {
         FROM pal_requests
         JOIN users ON (requestee_id = user_id) OR (requester_id = user_id)
         WHERE pal_request_id=${params.pal_request_id}
+            AND status = 'requester paid'
         GROUP BY pal_request_id
         ;
     `;
+
+    if (!pal_request) {
+        throw error(400, 'Invalid request')
+    }
 
     let {requestee, requester} = pal_request.users
 
