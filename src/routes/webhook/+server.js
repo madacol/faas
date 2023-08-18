@@ -24,6 +24,11 @@ export async function POST({ request, url }) {
 
     // Successfully constructed event
     switch (event.type) {
+
+        /**
+         * Identity verification
+         */
+
         case 'file.created': {
 
             break;
@@ -42,8 +47,6 @@ export async function POST({ request, url }) {
         case 'identity.verification_session.verified': {
             // All the verification checks passed
             const verificationSession = event.data.object;
-
-            console.log('Verification check passed: ' + verificationSession.id);
 
             // Update your user's identity status in your database
             const { rows: [user] } = await sql`
@@ -111,6 +114,11 @@ export async function POST({ request, url }) {
             }
             break;
         }
+
+        /**
+         * Payments
+         */
+
         case 'payment_intent.amount_capturable_updated': {
             const { pay_request_id } = event.data.object.metadata;
             const { rows: [pal_request] } = await sql`
@@ -152,7 +160,6 @@ export async function POST({ request, url }) {
                     FROM updated_pal_request
                     JOIN users ON (requestee_id = user_id) OR (requester_id = user_id)
                     GROUP BY pal_request_id, status, requestee_id, requester_id
-                ;
             ;`
 
             let {requestee, requester} = pal_request.users
@@ -399,6 +406,7 @@ export async function POST({ request, url }) {
                 WHERE pay_request_id = ${pay_request_id}
                 RETURNING *
             ;`
+
             break;
         }
         case 'payment_intent.created': {

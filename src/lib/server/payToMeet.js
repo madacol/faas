@@ -7,8 +7,6 @@ import { stripe } from "./stripe";
  * @returns 
  */
 export async function payToMeet(success_url, cancel_url, metadata = {}) {
-
-    console.log({success_url, cancel_url});
     return await stripe.checkout.sessions.create({
         line_items: [
             {
