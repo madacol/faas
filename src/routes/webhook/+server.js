@@ -111,14 +111,12 @@ export async function POST({ request, url }) {
             }
             break;
         }
-        case 'charge.succeeded': {
-            const { payment_intent, metadata } = event.data.object;
-            const pay_request_id = metadata.pay_request_id;
+        case 'payment_intent.amount_capturable_updated': {
+            const { pay_request_id } = event.data.object.metadata;
             const { rows: [pal_request] } = await sql`
                 WITH new_pay_request AS (
                     UPDATE pay_requests
                     SET status = 'paid'
-                        , payment_intent_id = ${payment_intent}
                     WHERE pay_request_id = ${pay_request_id}
                         AND (status = 'pending' OR status = 'rejected')
                     RETURNING pal_request_id, status
@@ -348,6 +346,18 @@ export async function POST({ request, url }) {
                 WHERE pay_request_id = ${pay_request_id}
                 RETURNING *
             ;`
+            break;
+        }
+        case 'payment_intent.created': {
+            const { id, metadata } = event.data.object;
+            const { pay_request_id } = metadata
+            await sql`
+                UPDATE pay_requests
+                SET payment_intent_id = ${id}
+                WHERE pay_request_id = ${pay_request_id}
+                    AND status = 'pending'
+            ;`
+
             break;
         }
     }
