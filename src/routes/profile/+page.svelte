@@ -30,7 +30,7 @@
 
 </script>
 
-<MainContainer>
+<MainContainer back_button={true}>
     <form method="post" on:submit={validateData}>
 
         <ProfileImageEdit bind:src={image_data_url} />

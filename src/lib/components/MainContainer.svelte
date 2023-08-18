@@ -1,11 +1,15 @@
 <script>
     import BackButton from "./BackButton.svelte"
+
+    export let back_button = false
 </script>
 
 <main>
-    <div class="header">
-        <BackButton />
-    </div>
+    {#if back_button}
+        <div class="header">
+            <BackButton />
+        </div>
+    {/if}
 
     <div class="content">
         <slot/>

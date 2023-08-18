@@ -26,7 +26,7 @@
     }
 </script>
 
-<MainContainer>
+<MainContainer back_button={true}>
     {#if error}
         <p class="error">{error}</p>
     {/if}
