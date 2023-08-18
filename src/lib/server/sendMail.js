@@ -1,4 +1,4 @@
-import { MAIL_PASSSWORD, MAIL_USER } from "$env/static/private";
+import { MAIL_PASSSWORD, MAIL_USER, ADMIN_MAIL } from "$env/static/private";
 import { createTransport } from "nodemailer";
 
 /**
@@ -8,8 +8,7 @@ import { createTransport } from "nodemailer";
  * @param {string} text 
  */
 export function sendMail(to, subject, text) {
-    return new Promise((resolve, reject) => {
-
+    return new Promise((resolve) => {
         let mailTransporter = createTransport({
             service: 'gmail',
             auth: {
@@ -28,10 +27,19 @@ export function sendMail(to, subject, text) {
 
         mailTransporter.sendMail(mailDetails, function(err, data) {
             if(err) {
-                return console.log({err, data});
+                return console.error({err, data});
             }
-            console.log('Email sent successfully', data);
+            console.log('Email sent successfully', to, subject);
             return resolve(data);
         });
     })
+}
+
+/**
+ * @param {string} subject
+ * @param {string} text
+ */
+export function mailAdmin(subject, text) {
+    const to = ADMIN_MAIL || MAIL_USER;
+    return sendMail(to, subject, text);
 }

@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { WEBHOOK_SECRET } from "$env/static/private";
 import { sql } from "$lib/server/db";
-import { sendMail } from "$lib/server/sendMail.js";
+import { mailAdmin, sendMail } from "$lib/server/sendMail.js";
 import { stripe } from "$lib/server/stripe.js";
 import { error } from "@sveltejs/kit";
 import { json } from "@sveltejs/kit";
@@ -229,6 +229,26 @@ export async function POST({ request, url }) {
 
                     // requestee just paid
 
+                    // capture both payments
+
+                    const { rows: pay_requests } = await sql`
+                        SELECT
+                            payment_intent_id
+                        FROM pay_requests
+                        WHERE pal_request_id = ${pal_request_id}
+                            AND status = 'paid'
+                        ;
+                    `;
+
+                    if (pay_requests.length !== 2) {
+                        // this should never happen
+                        console.error(`Wrong number of payments for pal_request_id ${pal_request_id}. Capturing ${pay_requests.length} payments.`);
+                    }
+
+                    pay_requests.forEach(async ({payment_intent_id}) => {
+                        await stripe.paymentIntents.capture(payment_intent_id);
+                    });
+
                     /**
                      * Subject: Rachel can't wait to meet you too!
                      * 
@@ -333,6 +353,28 @@ export async function POST({ request, url }) {
                 default:
                     console.error({pal_request});
                     throw new Error('Something went really wrong!');
+            }
+
+            break;
+        }
+        case 'charge.captured': {
+            const { pay_request_id } = event.data.object.metadata;
+
+            const { rows: [pay_request] } = await sql`
+                UPDATE pay_requests
+                SET status = 'captured'
+                WHERE pay_request_id = ${pay_request_id}
+                RETURNING *
+            ;`
+
+            if (!pay_request) {
+                console.error(`Something went wrong with pay_request_id: ${pay_request_id}`);
+                mailAdmin(
+                    `"charge.captured": But no pay_request found`,
+                    `pay_request_id: ${pay_request_id}\n\n`
+                    + `pay_request = ${pay_request}\n\n`
+                    + `event.data.object = ${JSON.stringify(event.data.object)}\n\n`
+                )
             }
 
             break;
