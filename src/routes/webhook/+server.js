@@ -339,6 +339,17 @@ export async function POST({ request, url }) {
 
             break;
         }
+        case 'payment_intent.canceled': {
+            const { pay_request_id } = event.data.object.metadata;
+
+            await sql`
+                UPDATE pay_requests
+                SET status = 'cancelled'
+                WHERE pay_request_id = ${pay_request_id}
+                RETURNING *
+            ;`
+            break;
+        }
     }
 
     return json({received: true});
