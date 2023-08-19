@@ -11,8 +11,8 @@ export const load = checkPermissions_MW(
                 email
                 , name
                 , lastname
+                , is_verified
             FROM users
-            WHERE is_verified = FALSE
             ORDER BY user_id
             LIMIT 1000
             ;
@@ -34,6 +34,23 @@ export const actions = {
             await sql`
                 UPDATE users
                 SET is_verified = TRUE
+                WHERE email = ${email}
+                ;
+            `;
+
+        },
+    ),
+    unverify: checkPermissions_MW(
+        'update_users',
+        async ({ request }) => {
+
+            const data = await request.formData();
+            const email = data.get("email");
+
+            // Remove session from DB
+            await sql`
+                UPDATE users
+                SET is_verified = FALSE
                 WHERE email = ${email}
                 ;
             `;

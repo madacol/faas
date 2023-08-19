@@ -1,6 +1,16 @@
 <script>
   /** @type {import('./$types').PageData} */
   export let data
+
+  let verified_users = [];
+  let unverified_users = [];
+  data.users.forEach(user => {
+    if (user.is_verified) {
+      verified_users.push(user);
+    } else {
+      unverified_users.push(user);
+    }
+  });
 </script>
 
 <main>
@@ -17,7 +27,7 @@
       </tr>
     </thead>
     <tbody>
-      {#each data.users as user}
+      {#each unverified_users as user}
         <tr>
           <td>{user.email}</td>
           <td>{user.name}</td>
@@ -32,6 +42,34 @@
       {/each}
     </tbody>
   </table>
+
+
+  <h1>Verified Users</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each verified_users as user}
+        <tr>
+          <td>{user.email}</td>
+          <td>{user.name}</td>
+          <td>{user.lastname}</td>
+          <td class="verify">
+            <form method="post" action="?/unverify">
+              <input type="hidden" name="email" value="{user.email}">
+              <button type="submit">Unverify</button>
+            </form>
+          </td>
+        </tr>
+      {/each}
+    </tbody>
 </main>
 
 
