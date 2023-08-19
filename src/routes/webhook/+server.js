@@ -421,6 +421,26 @@ export async function POST({ request, url }) {
 
             break;
         }
+        case 'charge.succeeded': {
+
+            break;
+        }
+        case 'charge.refunded': {
+
+            break;
+        }
+        case 'checkout.session.completed': {
+
+            break;
+        }
+        case 'payment_intent.succeeded': {
+
+            break;
+        }
+        case 'payment_intent.requires_action': {
+
+            break;
+        }
     }
 
     return json({received: true});
