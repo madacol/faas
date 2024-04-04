@@ -21,6 +21,7 @@
     {#if isAdmin}
       <div class="links">
         <a href="/pending_users">Pending Users</a>
+        <a href="/logs">Logs</a>
         <a href="/personality_test">Personality Test</a>
       </div>
     {/if}
